@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training — Er. Rakesh Gaurana | DamSafetyConsult.in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0f1c2e;--ink-mid:#1e3554;--ink-soft:#4e6a87;
+  --sand:#f6f1e9;--sand-dark:#eae3d6;
+  --amber:#b87a08;--amber-bright:#e8a020;--amber-pale:#fdf3de;
+  --white:#ffffff;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);overflow-x:hidden;font-size:16px;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 4rem;background:rgba(12,22,38,0.97);border-bottom:1px solid rgba(232,160,32,0.12);}
+.nav-brand{display:flex;flex-direction:column;line-height:1;}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);}
+.nav-logo span{color:var(--amber-bright);}
+.nav-tagline{font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--amber-bright);}
+.nav-cta{background:var(--amber);color:var(--white);padding:0.55rem 1.4rem;border-radius:2px;font-size:0.78rem;font-weight:600;text-decoration:none;letter-spacing:0.07em;text-transform:uppercase;transition:background 0.2s;}
+.nav-cta:hover{background:var(--amber-bright);}
+
+.page-hero{background:var(--ink);padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,122,8,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,122,8,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--amber) 30%,var(--amber-bright) 70%,transparent);}
+.hero-inner{position:relative;max-width:780px;}
+.page-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.page-eyebrow::after{content:'';display:inline-block;width:40px;height:1px;background:var(--amber);opacity:0.5;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;}
+.page-title em{color:var(--amber-bright);font-style:italic;}
+.page-subtitle{font-size:1rem;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.85;max-width:620px;}
+
+/* Credential strip */
+.cred-strip{background:var(--amber);padding:1.5rem 4rem;display:flex;align-items:center;gap:0;flex-wrap:wrap;}
+.cs-item{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);padding:0.2rem 1.5rem 0.2rem 0;margin-right:1.5rem;border-right:1px solid rgba(15,28,46,0.2);}
+.cs-item:last-child{border-right:none;}
+
+/* Why training */
+.why-section{padding:5rem 4rem;background:var(--white);}
+.s-label{font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;}
+.s-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--ink);line-height:1.1;margin-bottom:0.75rem;}
+.s-intro{font-size:0.95rem;color:var(--ink-soft);max-width:680px;line-height:1.85;margin-bottom:3rem;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5px;background:var(--sand-dark);}
+.why-card{background:var(--white);padding:2rem;transition:background 0.2s;}
+.why-card:hover{background:var(--sand);}
+.wc-icon{font-size:1.5rem;margin-bottom:0.75rem;opacity:0.5;}
+.wc-title{font-family:var(--serif);font-size:1rem;color:var(--ink);margin-bottom:0.4rem;}
+.wc-text{font-size:0.82rem;color:var(--ink-soft);line-height:1.75;}
+
+/* Modules */
+.modules-section{padding:5rem 4rem;background:var(--sand);}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5px;background:var(--sand-dark);margin-top:2.5rem;}
+.module-card{background:var(--sand);padding:2rem;border-left:3px solid transparent;transition:all 0.2s;}
+.module-card:hover{border-left-color:var(--amber);background:var(--white);}
+.mod-num{font-family:var(--serif);font-size:1.8rem;color:var(--sand-dark);font-style:italic;line-height:1;margin-bottom:0.5rem;}
+.mod-tag{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;}
+.mod-title{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:0.5rem;line-height:1.3;}
+.mod-desc{font-size:0.82rem;color:var(--ink-soft);line-height:1.75;margin-bottom:0.75rem;}
+.mod-topics{list-style:none;display:flex;flex-direction:column;gap:0.25rem;}
+.mod-topics li{font-size:0.76rem;color:var(--ink-soft);padding-left:1rem;position:relative;line-height:1.5;}
+.mod-topics li::before{content:'·';position:absolute;left:0;color:var(--amber);}
+.mod-duration{font-size:0.68rem;font-weight:600;color:var(--amber);margin-top:0.75rem;letter-spacing:0.06em;text-transform:uppercase;}
+
+/* Delivery */
+.delivery-section{background:var(--ink-mid);padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.del-text .s-title{color:var(--white);}
+.del-text .s-intro{color:rgba(255,255,255,0.55);}
+.del-cards{display:flex;flex-direction:column;gap:0.75rem;}
+.del-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:2px;padding:1.25rem 1.5rem;}
+.dc-title{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;}
+.dc-text{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.65;}
+
+/* State assignments */
+.states-section{padding:5rem 4rem;background:var(--sand-dark);}
+.states-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--sand);margin-top:2.5rem;}
+.state-card{background:var(--sand-dark);padding:2rem;transition:background 0.2s;}
+.state-card:hover{background:var(--white);}
+.sc-abbr{font-family:var(--serif);font-size:2.5rem;color:var(--amber);line-height:1;margin-bottom:0.5rem;}
+.sc-name{font-size:0.88rem;font-weight:600;color:var(--ink);margin-bottom:0.75rem;}
+.sc-scope{font-size:0.8rem;color:var(--ink-soft);line-height:1.7;margin-bottom:0.75rem;}
+.sc-modules{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.sc-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:2px;background:var(--sand);color:var(--ink-soft);}
+
+/* Photo placeholder */
+.photo-section{background:var(--white);padding:5rem 4rem;}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem;}
+.photo-placeholder{height:200px;background:var(--sand);border:1px solid var(--sand-dark);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;}
+.pp-icon{font-size:2rem;opacity:0.2;}
+.pp-label{font-size:0.68rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;text-align:center;line-height:1.6;}
+
+/* CTA */
+.cta-strip{background:var(--ink);padding:5rem 4rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.cta-title{font-family:var(--serif);font-size:2.2rem;color:var(--white);margin-bottom:0.75rem;}
+.cta-strip p{font-size:0.92rem;color:rgba(255,255,255,0.5);max-width:560px;line-height:1.8;}
+.cta-actions{display:flex;flex-direction:column;gap:1rem;align-items:flex-end;}
+.btn-amber{background:var(--amber);color:var(--white);padding:0.9rem 2rem;font-weight:600;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;white-space:nowrap;display:inline-block;}
+.btn-amber:hover{background:var(--amber-bright);}
+.btn-ghost{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:0.9rem 2rem;font-size:0.85rem;text-decoration:none;border-radius:2px;transition:all 0.2s;white-space:nowrap;display:inline-block;}
+.btn-ghost:hover{border-color:var(--amber-bright);color:var(--amber-bright);}
+
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:var(--serif);font-size:1.05rem;color:var(--white);}
+.footer-brand span{color:var(--amber-bright);}
+.footer-note{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;}
+.footer-links a:hover{color:var(--amber-bright);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}.nav-links{display:none;}
+  .page-hero,.why-section,.modules-section,.states-section,.photo-section,.cta-strip{padding-left:1.5rem;padding-right:1.5rem;}
+  .cred-strip{padding:1.5rem;}
+  .delivery-section{grid-template-columns:1fr;padding:3rem 1.5rem;}
+  .cta-strip{grid-template-columns:1fr;}.cta-actions{align-items:flex-start;}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DamSafetyConsult<span>.in</span></div>
+    <div class="nav-tagline">Dam Safety Engineering · India</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="training.html" class="active">Training</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Engage Us</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-bar"></div>
+  <div class="hero-inner">
+    <div class="page-eyebrow">Training &amp; Capacity Building</div>
+    <h1 class="page-title">Building Dam Safety<br><em>Capacity Across India</em></h1>
+    <p class="page-subtitle">State-level training programmes for dam safety officials, SDSOs, and dam owners — designed around what practitioners actually need to do under DSA 2021. Delivered in Himachal Pradesh, Uttarakhand, Manipur, and nationwide for NDSA and the World Bank DRIP programme.</p>
+  </div>
+</section>
+
+<div class="cred-strip">
+  <span class="cs-item">World Bank DRIP — Trained Trainer</span>
+  <span class="cs-item">NDSA National Training — 2024</span>
+  <span class="cs-item">NWA Pune — DHARMA Training</span>
+  <span class="cs-item">HP · Uttarakhand · Manipur</span>
+</div>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="s-label">The Training Philosophy</div>
+  <h2 class="s-title">Not Lectures — <em>Actionable Knowledge</em></h2>
+  <p class="s-intro">DSA 2021 has created obligations that most state dam safety officials are not yet equipped to fulfil. The gap is not awareness — most officials know the Act exists. The gap is operational: how do you actually conduct a pre-monsoon inspection? How do you fill the DHARMA questionnaire? How do you interpret a rapid risk assessment score? What does an EAP actually need to contain? These programmes answer those questions directly, with reference to real cases and actual regulatory forms.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="wc-icon">⊙</div>
+      <div class="wc-title">Current &amp; Regulatory</div>
+      <p class="wc-text">All content is aligned with DSA 2021, NDSA Regulations 2024, and the latest NDSA/CWC guidelines — not older frameworks. Participants leave knowing what applies today, not what applied in 2015.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">◎</div>
+      <div class="wc-title">Field-Referenced</div>
+      <p class="wc-text">Drawing on 35+ years of CWC and NDSA field experience — including World Bank in-situ training at Ichari Dam and the Luti Dam forensic investigation. Case examples are real, not hypothetical.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">⊕</div>
+      <div class="wc-title">Audience-Calibrated</div>
+      <p class="wc-text">Programmes designed for the actual audience — dam safety officials who need to apply the law, not researchers who need to understand it theoretically. Language, examples, and depth adjusted accordingly.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">◈</div>
+      <div class="wc-title">Modular &amp; Flexible</div>
+      <p class="wc-text">Modules can be delivered standalone or combined into 1–3 day programmes. Mix and match based on your state's priority gaps — inspections, risk assessment, EAP, DHARMA, or a comprehensive DSA 2021 overview.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules-section">
+  <div class="s-label">Training Modules</div>
+  <h2 class="s-title">What We Deliver</h2>
+  <div class="modules-grid">
+
+    <div class="module-card">
+      <div class="mod-num">M1</div>
+      <div class="mod-tag">Foundation</div>
+      <div class="mod-title">DSA 2021 — The Act, Rules &amp; Regulations Explained</div>
+      <p class="mod-desc">A practical walkthrough of what DSA 2021 actually requires — for dam owners, SDSOs, and state officials. Not a legal lecture; a compliance guide.</p>
+      <ul class="mod-topics">
+        <li>Specified dam definition — Section 2(x), all five criteria</li>
+        <li>Institutional framework — NDSA, SCDS, SDSO, Dam Safety Unit</li>
+        <li>Obligations of dam owners — Sections 12–15, 26, 30</li>
+        <li>Penalties and enforcement — Chapter VI</li>
+        <li>NDSA Regulations 2024 — what's new</li>
+      </ul>
+      <div class="mod-duration">Half day · All audiences</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M2</div>
+      <div class="mod-tag">Inspection</div>
+      <div class="mod-title">Dam Inspection Methodology</div>
+      <p class="mod-desc">What to look for, how to record it, and how to use the DHARMA inspection questionnaire. Practical guidance for pre-monsoon and post-monsoon inspections.</p>
+      <ul class="mod-topics">
+        <li>NDSA Circular 1/2022 — deadlines and requirements</li>
+        <li>Visual inspection — what to observe and how to grade</li>
+        <li>Structural, mechanical, and instrumentation checks</li>
+        <li>DHARMA questionnaire — field walkthrough</li>
+        <li>Distress condition identification and reporting</li>
+      </ul>
+      <div class="mod-duration">Full day · Dam safety officials, DSOs</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M3</div>
+      <div class="mod-tag">Risk Assessment</div>
+      <div class="mod-title">Rapid Risk Assessment — RRSSD Methodology</div>
+      <p class="mod-desc">World Bank DRIP methodology for Tier 1 rapid risk screening — how to compute FI × PI, interpret sub-scores, and identify which failure modes need deeper assessment.</p>
+      <ul class="mod-topics">
+        <li>FI = f(TC, EC, SP) — sub-score structure and computation</li>
+        <li>PI — Population Impact scoring</li>
+        <li>Risk Index computation and what it means</li>
+        <li>Sub-score interpretation — which failure mode is dominant</li>
+        <li>Tier 2 referral — when and why</li>
+      </ul>
+      <div class="mod-duration">Full day · Dam safety engineers, DSOs</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M4</div>
+      <div class="mod-tag">Emergency Preparedness</div>
+      <div class="mod-title">EAP Preparation — NDSA Template Walkthrough</div>
+      <p class="mod-desc">Practical preparation of Emergency Action Plans — hazard classification, dam break analysis inputs, inundation mapping, and the NDSA-approved EAP template.</p>
+      <ul class="mod-topics">
+        <li>NDSA Hazard Classification Regulations 2024 — PCI and H1–H6</li>
+        <li>Dam break analysis — breach parameters and what they mean</li>
+        <li>Inundation mapping — how to read and use the outputs</li>
+        <li>EAP template — section by section walkthrough</li>
+        <li>Mock drill planning and community awareness</li>
+      </ul>
+      <div class="mod-duration">Full day · Dam owners, SDSO, DDMA officials</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M5</div>
+      <div class="mod-tag">Digital Compliance</div>
+      <div class="mod-title">DHARMA Portal — Operations &amp; Compliance</div>
+      <p class="mod-desc">Hands-on training on NDSA's DHARMA digital platform — registration, inspection data entry, report upload, and compliance tracking. Delivered at NWA Pune for NDSA (April 2024).</p>
+      <ul class="mod-topics">
+        <li>Dam registration and basic data entry</li>
+        <li>Inspection questionnaire — field to portal</li>
+        <li>Report upload — CDSE, inspection, EAP</li>
+        <li>Hazard classification and RA results entry</li>
+        <li>Compliance status tracking and NDSA visibility</li>
+      </ul>
+      <div class="mod-duration">Half to full day · All DHARMA users</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M6</div>
+      <div class="mod-tag">Construction Safety</div>
+      <div class="mod-title">First Filling &amp; Construction-Stage Safety under DSA 2021</div>
+      <p class="mod-desc">The critical bridge between construction completion and operational safety — what DSA 2021 requires before first filling, during filling, and how construction-stage EAPs differ from operational EAPs.</p>
+      <ul class="mod-topics">
+        <li>Construction-stage vs operational EAP — key differences</li>
+        <li>Pre-filling SoP — checklist and sign-off requirements</li>
+        <li>Monitoring during first filling — instrumentation response</li>
+        <li>When does DSA 2021 kick in? — new vs existing dams</li>
+        <li>Case study — monsoon arrival before crest completion</li>
+      </ul>
+      <div class="mod-duration">Half day · Dam owners, construction engineers, SDSOs</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M7</div>
+      <div class="mod-tag">Hydrology</div>
+      <div class="mod-title">Hydrological Safety Review — PMF, SPF &amp; IDF Adequacy</div>
+      <p class="mod-desc">Understanding and reviewing the design flood for existing dams — when is the IDF inadequate, what does a PMF review involve, and how does NDSA approach IDF deficiencies.</p>
+      <ul class="mod-topics">
+        <li>IDF standards — PMF, SPF, return period floods</li>
+        <li>IS 11223 classification vs DSA 2021 requirements</li>
+        <li>GLOF — what it is and when it matters</li>
+        <li>Identifying IDF deficiency — signs and triggers</li>
+        <li>ALARP framework for remediation planning</li>
+      </ul>
+      <div class="mod-duration">Full day · Dam safety engineers, design engineers</div>
+    </div>
+
+    <div class="module-card">
+      <div class="mod-num">M8</div>
+      <div class="mod-tag">Comprehensive</div>
+      <div class="mod-title">DSA 2021 Comprehensive Programme</div>
+      <p class="mod-desc">A full 2–3 day programme combining M1 through M5 for new state dam safety organisations or states commencing DSA 2021 implementation from scratch. Delivered in HP, Uttarakhand, and Manipur.</p>
+      <ul class="mod-topics">
+        <li>Day 1: Act, Rules, Regulations, institutional setup</li>
+        <li>Day 2: Inspections, instrumentation, risk assessment</li>
+        <li>Day 3: EAP, DHARMA, compliance obligations</li>
+        <li>Case studies from the trainer's NDSA experience</li>
+        <li>Practical exercises using real NDSA formats</li>
+      </ul>
+      <div class="mod-duration">2–3 days · Mixed state audience</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="delivery-section">
+  <div class="del-text">
+    <div class="s-label" style="color:var(--amber-bright);">Delivery</div>
+    <h2 class="s-title" style="color:var(--white);">How Programmes<br>Are <em style="color:var(--amber-bright);">Structured</em></h2>
+    <p class="s-intro">Programmes are adapted to the commissioning organisation's priorities, audience composition, and available time. All content is current as of DSA 2021 and NDSA Regulations 2024.</p>
+  </div>
+  <div class="del-cards">
+    <div class="del-card">
+      <div class="dc-title">Audience</div>
+      <div class="dc-text">Dam safety officials, Dam Safety Officers, SDSO staff, dam owners' technical representatives, design engineers, DDMA officials — or mixed audiences combining multiple roles.</div>
+    </div>
+    <div class="del-card">
+      <div class="dc-title">Duration</div>
+      <div class="dc-text">Half day (single module), full day (2–3 modules), or 2–3 day comprehensive programme. Online or in-person. State-hosted or neutral venue.</div>
+    </div>
+    <div class="del-card">
+      <div class="dc-title">Materials</div>
+      <div class="dc-text">Presentation slides, module workbooks, NDSA format templates (EAP, inspection checklist, DHARMA questionnaire), and reference documents — all provided to participants.</div>
+    </div>
+    <div class="del-card">
+      <div class="dc-title">Language</div>
+      <div class="dc-text">English with Hindi explanation where needed. Key regulatory terms and NDSA formats provided in both languages.</div>
+    </div>
+    <div class="del-card">
+      <div class="dc-title">Certification</div>
+      <div class="dc-text">Participation certificates issued. For NDSA-commissioned programmes, certificates carry NDSA authority. For state programmes, certificates issued under the commissioning state government.</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATE ASSIGNMENTS -->
+<section class="states-section">
+  <div class="s-label">Track Record</div>
+  <h2 class="s-title">States &amp; Organisations Served</h2>
+  <div class="states-grid">
+    <div class="state-card">
+      <div class="sc-abbr">HP</div>
+      <div class="sc-name">Himachal Pradesh</div>
+      <p class="sc-scope">DSA 2021 implementation training for HPPCL and state dam safety officials. Coverage of the Act's institutional requirements, compliance obligations, and practical inspection methodology for HP's predominantly Himalayan dam portfolio.</p>
+      <div class="sc-modules"><span class="sc-tag">DSA 2021 Overview</span><span class="sc-tag">Inspection</span><span class="sc-tag">DHARMA</span></div>
+    </div>
+    <div class="state-card">
+      <div class="sc-abbr">UK</div>
+      <div class="sc-name">Uttarakhand</div>
+      <p class="sc-scope">Dam inspection methodology, EAP preparation, and rapid risk assessment for Uttarakhand's dam portfolio — with specific focus on Himalayan river constraints, high seismicity, GLOF risk, and post-disaster protocols following the 2021 Chamoli event.</p>
+      <div class="sc-modules"><span class="sc-tag">Inspection</span><span class="sc-tag">Risk Assessment</span><span class="sc-tag">EAP</span><span class="sc-tag">GLOF</span></div>
+    </div>
+    <div class="state-card">
+      <div class="sc-abbr">MN</div>
+      <div class="sc-name">Manipur</div>
+      <p class="sc-scope">DSA 2021 compliance capacity building for Manipur's State Dam Safety Organisation — covering SDSO constitution, dam owner obligations, inspection protocols, and compliance timelines for a state in the early stages of DSA 2021 implementation.</p>
+      <div class="sc-modules"><span class="sc-tag">DSA 2021</span><span class="sc-tag">SDSO Setup</span><span class="sc-tag">Compliance</span></div>
+    </div>
+    <div class="state-card">
+      <div class="sc-abbr">WB</div>
+      <div class="sc-name">NDSA / World Bank DRIP</div>
+      <p class="sc-scope">Received World Bank in-situ rapid risk assessment training at Ichari Dam, Uttarakhand (March 2024). Subsequently commissioned by NDSA to train field engineers across India in the RRSSD methodology — multiplying the programme's reach nationwide.</p>
+      <div class="sc-modules"><span class="sc-tag">RRSSD</span><span class="sc-tag">Rapid Risk Assessment</span><span class="sc-tag">Nationwide</span></div>
+    </div>
+    <div class="state-card">
+      <div class="sc-abbr">DH</div>
+      <div class="sc-name">DHARMA — NWA Pune</div>
+      <p class="sc-scope">NDSA-commissioned training on the DHARMA digital compliance platform at the National Water Academy, Pune (April 2024). Trained dam safety officials from multiple states on operational use of DHARMA for inspection reporting and compliance tracking.</p>
+      <div class="sc-modules"><span class="sc-tag">DHARMA Portal</span><span class="sc-tag">National Level</span><span class="sc-tag">NWA Pune</span></div>
+    </div>
+    <div class="state-card">
+      <div class="sc-abbr">+</div>
+      <div class="sc-name">Your State</div>
+      <p class="sc-scope">Training programmes available for any state currently implementing DSA 2021 — especially states constituting new SDSOs, commencing dam safety inspections, or preparing EAPs for the first time. Contact us to discuss.</p>
+      <div class="sc-modules"><span class="sc-tag">All Modules Available</span><span class="sc-tag">Customised</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO PLACEHOLDERS -->
+<section class="photo-section">
+  <div class="s-label">In the Field</div>
+  <h2 class="s-title">Training &amp; Site Visits</h2>
+  <p style="font-size:0.88rem;color:var(--ink-soft);margin-bottom:0;max-width:500px;line-height:1.8;">Photographs from training programmes, dam site inspections, and NDSA assignments — to be added.</p>
+  <div class="photo-grid">
+    <div class="photo-placeholder"><div class="pp-icon">◻</div><div class="pp-label">NWA Pune<br>DHARMA Training<br>April 2024</div></div>
+    <div class="photo-placeholder"><div class="pp-icon">◻</div><div class="pp-label">Ichari Dam<br>World Bank Risk Assessment<br>March 2024</div></div>
+    <div class="photo-placeholder"><div class="pp-icon">◻</div><div class="pp-label">State Training Programme<br>Himachal Pradesh</div></div>
+    <div class="photo-placeholder"><div class="pp-icon">◻</div><div class="pp-label">State Training Programme<br>Uttarakhand</div></div>
+    <div class="photo-placeholder"><div class="pp-icon">◻</div><div class="pp-label">NDSA Dam Inspection<br>Site Visit</div></div>
+    <div class="photo-placeholder"><div class="pp-icon">◻</div><div class="pp-label">Your Photo<br>Here</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div>
+    <div class="cta-title">Plan a Training Programme</div>
+    <p>Whether you need a half-day DHARMA workshop or a 3-day comprehensive DSA 2021 programme for your state — get in touch with your requirement and we will propose a suitable programme structure and timeline.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn-amber">Enquire About Training</a>
+    <a href="services.html" class="btn-ghost">All Services</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
+  <div class="footer-note">Er. Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="tools.html">Tools</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

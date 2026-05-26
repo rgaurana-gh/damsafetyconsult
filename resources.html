@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — DamSafetyConsult.in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0f1c2e;--ink-mid:#1e3554;--ink-soft:#4e6a87;
+  --sand:#f6f1e9;--sand-dark:#eae3d6;
+  --amber:#b87a08;--amber-bright:#e8a020;--amber-pale:#fdf3de;
+  --white:#ffffff;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);overflow-x:hidden;font-size:16px;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 4rem;background:rgba(12,22,38,0.97);border-bottom:1px solid rgba(232,160,32,0.12);}
+.nav-brand{display:flex;flex-direction:column;line-height:1;}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);}
+.nav-logo span{color:var(--amber-bright);}
+.nav-tagline{font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--amber-bright);}
+.nav-cta{background:var(--amber);color:var(--white);padding:0.55rem 1.4rem;border-radius:2px;font-size:0.78rem;font-weight:600;text-decoration:none;letter-spacing:0.07em;text-transform:uppercase;transition:background 0.2s;}
+.nav-cta:hover{background:var(--amber-bright);}
+
+.page-hero{background:var(--ink);padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,122,8,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,122,8,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--amber) 30%,var(--amber-bright) 70%,transparent);}
+.hero-inner{position:relative;max-width:720px;}
+.page-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.page-eyebrow::after{content:'';display:inline-block;width:40px;height:1px;background:var(--amber);opacity:0.5;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;}
+.page-title em{color:var(--amber-bright);font-style:italic;}
+.page-subtitle{font-size:1rem;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.85;max-width:600px;}
+
+/* Copyright notice */
+.copyright-note{background:var(--amber-pale);border-bottom:1px solid var(--sand-dark);padding:1rem 4rem;font-size:0.8rem;color:var(--ink-soft);line-height:1.7;}
+.copyright-note strong{color:var(--ink);}
+
+.section{padding:5rem 4rem;}
+.section.alt{background:var(--white);}
+.s-label{font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;}
+.s-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--ink);line-height:1.1;margin-bottom:0.75rem;}
+.s-intro{font-size:0.92rem;color:var(--ink-soft);max-width:640px;line-height:1.85;margin-bottom:2.5rem;}
+
+/* Resource cards */
+.res-grid{display:flex;flex-direction:column;gap:2px;background:var(--sand-dark);}
+.res-item{background:var(--white);display:flex;align-items:flex-start;gap:1.5rem;padding:1.25rem 1.75rem;transition:background 0.15s;}
+.res-item:hover{background:var(--amber-pale);}
+.res-icon{width:40px;height:40px;background:var(--sand-dark);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;color:var(--amber);}
+.res-content{flex:1;min-width:0;}
+.res-title{font-size:0.92rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+.res-desc{font-size:0.8rem;color:var(--ink-soft);line-height:1.65;margin-bottom:0.4rem;}
+.res-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.res-tag{font-size:0.62rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.15rem 0.45rem;border-radius:2px;background:var(--sand-dark);color:var(--ink-soft);}
+.res-tag.free{background:#e8f5ee;color:#1a7a4a;}
+.res-tag.ext{background:var(--sand);color:var(--ink-soft);}
+.res-action{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;}
+.res-link{font-size:0.75rem;font-weight:600;color:var(--amber);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;}
+.res-link:hover{color:var(--amber-bright);}
+.res-link.download{color:var(--ink-mid);}
+.res-link.download:hover{color:var(--amber);}
+
+/* Institutional links */
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--sand-dark);margin-top:0;}
+.inst-card{background:var(--white);padding:1.5rem;display:flex;flex-direction:column;gap:0.4rem;transition:background 0.2s;}
+.inst-card:hover{background:var(--amber-pale);}
+.inst-abbr{font-family:var(--serif);font-size:1.5rem;color:var(--amber);line-height:1;}
+.inst-name{font-size:0.85rem;font-weight:600;color:var(--ink);}
+.inst-desc{font-size:0.75rem;color:var(--ink-soft);line-height:1.6;}
+.inst-link{font-size:0.72rem;color:var(--amber);text-decoration:none;font-weight:600;margin-top:0.25rem;}
+.inst-link:hover{color:var(--amber-bright);}
+
+/* Section divider */
+.sec-divider{height:1px;background:var(--sand-dark);margin:0;}
+
+/* Coming soon books */
+.books-coming{background:var(--sand-dark);padding:5rem 4rem;}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--sand);margin-top:2rem;}
+.book-card{background:var(--sand-dark);padding:1.75rem;display:flex;flex-direction:column;gap:0.35rem;opacity:0.8;}
+.book-cat{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);}
+.book-title{font-size:0.92rem;font-weight:600;color:var(--ink);line-height:1.3;}
+.book-pub{font-size:0.75rem;color:var(--ink-soft);}
+.book-note{font-size:0.72rem;color:var(--ink-soft);font-style:italic;margin-top:0.2rem;line-height:1.5;}
+.book-avail{font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.45rem;border-radius:2px;margin-top:0.35rem;display:inline-block;width:fit-content;}
+.book-avail.free{background:#e8f5ee;color:#1a7a4a;}
+.book-avail.pending{background:var(--sand);color:var(--ink-soft);border:1px solid var(--sand-dark);}
+
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:var(--serif);font-size:1.05rem;color:var(--white);}
+.footer-brand span{color:var(--amber-bright);}
+.footer-note{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;}
+.footer-links a:hover{color:var(--amber-bright);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}.nav-links{display:none;}
+  .page-hero,.section,.books-coming{padding-left:1.5rem;padding-right:1.5rem;}
+  .copyright-note{padding-left:1.5rem;padding-right:1.5rem;}
+  .res-item{flex-wrap:wrap;}.res-action{width:100%;}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DamSafetyConsult<span>.in</span></div>
+    <div class="nav-tagline">Dam Safety Engineering · India</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="training.html">Training</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Engage Us</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-bar"></div>
+  <div class="hero-inner">
+    <div class="page-eyebrow">Resources</div>
+    <h1 class="page-title">Dam Safety<br><em>Reference Library</em></h1>
+    <p class="page-subtitle">A curated collection of freely available dam safety references — Indian regulations, government manuals, international guidelines, and institutional portals. Organised for practitioners, not academics.</p>
+  </div>
+</section>
+
+<div class="copyright-note">
+  <strong>Copyright note:</strong> Only freely distributable documents are linked or hosted here — Government of India publications, US Government documents (public domain), World Bank open-access reports, and similar. Commercial textbooks, BIS/IS codes, and journal papers are listed with links to official sources for purchase or institutional access. Do not upload or share copyrighted material.
+</div>
+
+<!-- INDIAN REGULATORY -->
+<section class="section alt" id="india-reg">
+  <div class="s-label">Indian Regulatory Framework</div>
+  <h2 class="s-title">DSA 2021 &amp; NDSA</h2>
+  <p class="s-intro">The primary statutory and regulatory documents governing dam safety in India — all freely available from government sources.</p>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon">⊙</div>
+      <div class="res-content">
+        <div class="res-title">Dam Safety Act, 2021 — Gazette Notification</div>
+        <div class="res-desc">The primary legislation. Defines specified dams, establishes NDSA and NCDS, mandates obligations of dam owners and SDSOs.</div>
+        <div class="res-tags"><span class="res-tag free">Free</span><span class="res-tag">GoI Gazette</span><span class="res-tag">Section 2(x) · Chapter III · V</span></div>
+      </div>
+      <div class="res-action"><a href="https://ndsa.gov.in" target="_blank" class="res-link">NDSA Website →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊙</div>
+      <div class="res-content">
+        <div class="res-title">NDSA Annual Reports — 2022–23, 2023–24, 2024–25</div>
+        <div class="res-desc">Status of dam safety implementation across India. Authored by Er. Rakesh Gaurana during NDSA consultancy tenure.</div>
+        <div class="res-tags"><span class="res-tag free">Free</span><span class="res-tag">NDSA</span></div>
+      </div>
+      <div class="res-action"><a href="https://ndsa.gov.in" target="_blank" class="res-link">NDSA Website →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊙</div>
+      <div class="res-content">
+        <div class="res-title">NDSA Vulnerability &amp; Hazard Classification Regulations, 2024</div>
+        <div class="res-desc">PCI-based H1–H6 hazard classification system for specified dams. Governs EAP requirements and downstream consequence assessment.</div>
+        <div class="res-tags"><span class="res-tag free">Free</span><span class="res-tag">NDSA 2024</span><span class="res-tag">EAP</span></div>
+      </div>
+      <div class="res-action"><a href="https://ndsa.gov.in" target="_blank" class="res-link">NDSA Website →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊞</div>
+      <div class="res-content">
+        <div class="res-title">DHARMA Portal — Dam Health &amp; Rehabilitation Monitoring Application</div>
+        <div class="res-desc">NDSA's digital compliance platform. Mandatory for all specified dams — inspection reports, CDSE uploads, hazard classification, risk assessment results.</div>
+        <div class="res-tags"><span class="res-tag free">Free · Specified Dams</span><span class="res-tag">Login Required</span></div>
+      </div>
+      <div class="res-action"><a href="https://dharma.cwc.gov.in" target="_blank" class="res-link">DHARMA Portal →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊙</div>
+      <div class="res-content">
+        <div class="res-title">CWC Dam Safety Manual, 2019</div>
+        <div class="res-desc">Comprehensive manual covering dam safety inspection procedures, instrumentation, EAP, and safety review methodology.</div>
+        <div class="res-tags"><span class="res-tag free">Free</span><span class="res-tag">CWC</span></div>
+      </div>
+      <div class="res-action"><a href="https://cwc.gov.in" target="_blank" class="res-link">CWC Website →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊙</div>
+      <div class="res-content">
+        <div class="res-title">CWC Guidelines for IDF — Flood Estimation Methods</div>
+        <div class="res-desc">CWC Hydrometeorological Reports and IDF guidelines — the primary reference for PMF estimation in Indian catchments.</div>
+        <div class="res-tags"><span class="res-tag free">Free</span><span class="res-tag">CWC</span><span class="res-tag">Hydrology</span></div>
+      </div>
+      <div class="res-action"><a href="https://cwc.gov.in" target="_blank" class="res-link">CWC Website →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLD BANK / DRIP -->
+<section class="section" id="wb-drip">
+  <div class="s-label">World Bank / DRIP</div>
+  <h2 class="s-title">Risk Assessment &amp; DRIP</h2>
+  <p class="s-intro">World Bank DRIP programme documents — risk assessment methodology, RRSSD tool guidance, and dam safety management frameworks. All open access.</p>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon">◎</div>
+      <div class="res-content">
+        <div class="res-title">World Bank DRIP — Dam Rehabilitation and Improvement Project</div>
+        <div class="res-desc">Project documentation, risk assessment methodology guidance, and RRSSD (Rapid Risk Screening for Dams) framework — the basis for India's Tier 1 risk assessment under NDSA.</div>
+        <div class="res-tags"><span class="res-tag free">Open Access</span><span class="res-tag">World Bank</span><span class="res-tag">RRSSD</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.worldbank.org" target="_blank" class="res-link">World Bank →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">◎</div>
+      <div class="res-content">
+        <div class="res-title">World Bank — Dam Safety Guidelines</div>
+        <div class="res-desc">World Bank's operational policy and guidelines on dam safety — applicable to Bank-financed projects and widely adopted as good international practice.</div>
+        <div class="res-tags"><span class="res-tag free">Open Access</span><span class="res-tag">World Bank</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.worldbank.org" target="_blank" class="res-link">World Bank →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- US PUBLICATIONS -->
+<section class="section alt" id="us-pubs">
+  <div class="s-label">US Government Publications</div>
+  <h2 class="s-title">USBR · USACE · FEMA</h2>
+  <p class="s-intro">US Government dam safety publications are public domain and freely distributable. These are the most widely referenced international technical manuals in dam safety practice globally.</p>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon">◈</div>
+      <div class="res-content">
+        <div class="res-title">USBR — Design of Small Dams (3rd Edition)</div>
+        <div class="res-desc">The definitive reference for small dam design — embankment dams, spillways, outlets, stilling basins, and safety evaluation. Widely used in India alongside IS codes.</div>
+        <div class="res-tags"><span class="res-tag free">Public Domain</span><span class="res-tag">USBR</span><span class="res-tag">Design</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/SmallDams.pdf" target="_blank" class="res-link">Download PDF →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">◈</div>
+      <div class="res-content">
+        <div class="res-title">USBR — Embankment Dam Instrumentation Manual</div>
+        <div class="res-desc">Comprehensive guide to instrumentation of embankment dams — piezometers, settlement gauges, inclinometers, seepage measurement, and data interpretation.</div>
+        <div class="res-tags"><span class="res-tag free">Public Domain</span><span class="res-tag">USBR</span><span class="res-tag">Instrumentation</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.usbr.gov" target="_blank" class="res-link">USBR Website →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">◈</div>
+      <div class="res-content">
+        <div class="res-title">USACE EM 1110-2-1603 — Hydraulic Design of Spillways</div>
+        <div class="res-desc">USACE Engineer Manual on spillway hydraulic design — ogee profile, discharge coefficients, energy dissipation. Widely used alongside IS 6512 and CWC guidelines.</div>
+        <div class="res-tags"><span class="res-tag free">Public Domain</span><span class="res-tag">USACE</span><span class="res-tag">Hydraulics</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.publications.usace.army.mil" target="_blank" class="res-link">USACE Pubs →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">◈</div>
+      <div class="res-content">
+        <div class="res-title">USACE EM 1110-2-2702 — Design of Spillway Tainter Gates</div>
+        <div class="res-desc">Engineering manual for tainter (radial) gate design — trunnion loads, pier design, HAB, and structural design. Reference used in Indian barrage gate design alongside IS 11572.</div>
+        <div class="res-tags"><span class="res-tag free">Public Domain</span><span class="res-tag">USACE</span><span class="res-tag">Gates</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.publications.usace.army.mil" target="_blank" class="res-link">USACE Pubs →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">◈</div>
+      <div class="res-content">
+        <div class="res-title">FEMA — Federal Guidelines for Dam Safety</div>
+        <div class="res-desc">FEMA's comprehensive guidelines covering dam safety programmes, emergency action planning, hazard classification, and safety inspections. Frequently referenced for international practice comparison.</div>
+        <div class="res-tags"><span class="res-tag free">Public Domain</span><span class="res-tag">FEMA</span><span class="res-tag">EAP</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.fema.gov/dam-safety" target="_blank" class="res-link">FEMA Dam Safety →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">◈</div>
+      <div class="res-content">
+        <div class="res-title">FEMA — Selecting and Accommodating Inflow Design Floods for Dams</div>
+        <div class="res-desc">Guidance on IDF selection methodology — risk-based approaches, PMF determination, and the rationale for IDF standards. Useful reference alongside CWC and IS 11223 for IDF review work.</div>
+        <div class="res-tags"><span class="res-tag free">Public Domain</span><span class="res-tag">FEMA</span><span class="res-tag">IDF · PMF</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.fema.gov" target="_blank" class="res-link">FEMA →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNATIONAL -->
+<section class="section" id="international">
+  <div class="s-label">International — Australia · UK · Canada</div>
+  <h2 class="s-title">International Guidelines</h2>
+  <p class="s-intro">Leading international dam safety frameworks — freely available from ANCOLD, Environment Agency UK, and CDA Canada.</p>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon">⊕</div>
+      <div class="res-content">
+        <div class="res-title">ANCOLD — Guidelines on Dam Safety Management (Australia)</div>
+        <div class="res-desc">Australian National Committee on Large Dams guidelines — risk-based dam safety management framework. One of the most advanced national frameworks, widely referenced internationally for ALARP and risk tolerability.</div>
+        <div class="res-tags"><span class="res-tag ext">ANCOLD Member Access</span><span class="res-tag">Australia</span><span class="res-tag">Risk-Based</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.ancold.org.au" target="_blank" class="res-link">ANCOLD →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊕</div>
+      <div class="res-content">
+        <div class="res-title">Environment Agency UK — Reservoir Safety Guidance</div>
+        <div class="res-desc">UK reservoir safety framework under the Reservoirs Act — inspection requirements, qualified civil engineer panels, and safety reporting. Good reference for comparison with DSA 2021 inspection regime.</div>
+        <div class="res-tags"><span class="res-tag free">Free</span><span class="res-tag">UK</span><span class="res-tag">Inspection</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.gov.uk/guidance/reservoir-safety" target="_blank" class="res-link">Gov.uk →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊕</div>
+      <div class="res-content">
+        <div class="res-title">CDA — Dam Safety Guidelines (Canadian Dam Association)</div>
+        <div class="res-desc">Canadian Dam Association technical bulletin on dam safety — risk assessment, consequence classification, and safety review. Strong on risk-informed decision making for dam safety.</div>
+        <div class="res-tags"><span class="res-tag ext">CDA Member Access</span><span class="res-tag">Canada</span><span class="res-tag">Risk Assessment</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.cda.ca" target="_blank" class="res-link">CDA →</a></div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon">⊕</div>
+      <div class="res-content">
+        <div class="res-title">ICOLD — International Commission on Large Dams</div>
+        <div class="res-desc">ICOLD Bulletins on dam safety, risk assessment, seismic analysis, instrumentation, and EAP. Some bulletins freely available; others require member access through national committee (INCOLD for India).</div>
+        <div class="res-tags"><span class="res-tag ext">Some Free · Some Member</span><span class="res-tag">ICOLD</span><span class="res-tag">International</span></div>
+      </div>
+      <div class="res-action"><a href="https://www.icold-cigb.org" target="_blank" class="res-link">ICOLD →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTIONAL PORTALS -->
+<section class="section alt" id="portals">
+  <div class="s-label">Institutional Portals</div>
+  <h2 class="s-title">Key Websites &amp; Portals</h2>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-abbr">NDSA</div>
+      <div class="inst-name">National Dam Safety Authority</div>
+      <div class="inst-desc">Regulations, circulars, annual reports, dam safety guidelines, and DHARMA access.</div>
+      <a href="https://ndsa.gov.in" target="_blank" class="inst-link">ndsa.gov.in →</a>
+    </div>
+    <div class="inst-card">
+      <div class="inst-abbr">CWC</div>
+      <div class="inst-name">Central Water Commission</div>
+      <div class="inst-desc">Technical manuals, hydrometeorological reports, flood estimation guidelines, barrage design manuals.</div>
+      <a href="https://cwc.gov.in" target="_blank" class="inst-link">cwc.gov.in →</a>
+    </div>
+    <div class="inst-card">
+      <div class="inst-abbr">DH</div>
+      <div class="inst-name">DHARMA Portal</div>
+      <div class="inst-desc">NDSA's digital dam safety compliance platform — mandatory for all specified dams in India.</div>
+      <a href="https://dharma.cwc.gov.in" target="_blank" class="inst-link">dharma.cwc.gov.in →</a>
+    </div>
+    <div class="inst-card">
+      <div class="inst-abbr">ICOLD</div>
+      <div class="inst-name">ICOLD / INCOLD</div>
+      <div class="inst-desc">International Commission on Large Dams. India's national committee is INCOLD — access to Bulletins and technical publications.</div>
+      <a href="https://www.icold-cigb.org" target="_blank" class="inst-link">icold-cigb.org →</a>
+    </div>
+    <div class="inst-card">
+      <div class="inst-abbr">BIS</div>
+      <div class="inst-name">Bureau of Indian Standards</div>
+      <div class="inst-desc">IS codes for dam and barrage design — IS 6512, IS 12720, IS 11223, IS 1904, IS 8826, IS 12169. Purchase through BIS portal.</div>
+      <a href="https://www.bis.gov.in" target="_blank" class="inst-link">bis.gov.in →</a>
+    </div>
+    <div class="inst-card">
+      <div class="inst-abbr">CBIP</div>
+      <div class="inst-name">Central Board of Irrigation &amp; Power</div>
+      <div class="inst-desc">Technical publications on hydraulic structures, dam safety, and irrigation. CBIP Publication No. 16 on barrage design is a key reference.</div>
+      <a href="https://www.cbip.org" target="_blank" class="inst-link">cbip.org →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS COMING SOON -->
+<section class="books-coming" id="books">
+  <div class="s-label">Reference Books</div>
+  <h2 class="s-title">Recommended Reading</h2>
+  <p class="s-intro" style="color:var(--ink-soft);">A curated list of key technical references for dam safety and hydraulic structures — to be expanded with direct download links where copyright permits. Commercial textbooks are listed with purchase links only.</p>
+  <div class="books-grid">
+    <div class="book-card">
+      <div class="book-cat">Dam Safety · India</div>
+      <div class="book-title">Guidelines for Planning and Design of Piped Irrigation Networks</div>
+      <div class="book-pub">CWC Publication · Co-authored by Er. Rakesh Gaurana</div>
+      <div class="book-note">National reference for irrigation network design. Available through CWC.</div>
+      <span class="book-avail free">Free · CWC</span>
+    </div>
+    <div class="book-card">
+      <div class="book-cat">Hydraulics</div>
+      <div class="book-title">Hydraulics of Open Channel Flow</div>
+      <div class="book-pub">Chanson, H. — Butterworth-Heinemann</div>
+      <div class="book-note">Comprehensive treatment of open channel hydraulics — relevant to spillway and stilling basin design.</div>
+      <span class="book-avail pending">Purchase Only</span>
+    </div>
+    <div class="book-card">
+      <div class="book-cat">Dam Engineering</div>
+      <div class="book-title">Embankment Dam Engineering — Casagrande Volume</div>
+      <div class="book-pub">Hirschfeld &amp; Poulos — Wiley</div>
+      <div class="book-note">Foundation text on embankment dam design and seepage analysis.</div>
+      <span class="book-avail pending">Purchase Only</span>
+    </div>
+    <div class="book-card">
+      <div class="book-cat">Hydrology</div>
+      <div class="book-title">Applied Hydrology</div>
+      <div class="book-pub">Chow, Maidment &amp; Mays — McGraw-Hill</div>
+      <div class="book-note">Standard hydrology reference for flood frequency analysis and PMF computation.</div>
+      <span class="book-avail pending">Purchase Only</span>
+    </div>
+    <div class="book-card">
+      <div class="book-cat">Risk Assessment</div>
+      <div class="book-title">Risk and Uncertainty in Dam Safety</div>
+      <div class="book-pub">Hartford &amp; Baecher — Thomas Telford</div>
+      <div class="book-note">Foundational text on quantitative risk assessment for dams — fN curves, ALARP, tolerability criteria.</div>
+      <span class="book-avail pending">Purchase Only</span>
+    </div>
+    <div class="book-card">
+      <div class="book-cat">More Coming</div>
+      <div class="book-title">Additional References</div>
+      <div class="book-pub">To be added</div>
+      <div class="book-note">A fuller annotated reading list covering USBR, USACE, ICOLD Bulletins, and Indian publications is being compiled and will be added here.</div>
+      <span class="book-avail pending">Coming Soon</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
+  <div class="footer-note">Er. Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="tools.html">Tools</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

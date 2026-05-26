@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Er. Rakesh Gaurana | DamSafetyConsult.in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0f1c2e;--ink-mid:#1e3554;--ink-soft:#4e6a87;
+  --sand:#f6f1e9;--sand-dark:#eae3d6;
+  --amber:#b87a08;--amber-bright:#e8a020;--amber-pale:#fdf3de;
+  --white:#ffffff;--green:#1a7a4a;--green-pale:#e8f5ee;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);overflow-x:hidden;font-size:16px;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 4rem;background:rgba(12,22,38,0.97);border-bottom:1px solid rgba(232,160,32,0.12);}
+.nav-brand{display:flex;flex-direction:column;line-height:1;}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);}
+.nav-logo span{color:var(--amber-bright);}
+.nav-tagline{font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--amber-bright);}
+.nav-cta{background:var(--amber);color:var(--white);padding:0.55rem 1.4rem;border-radius:2px;font-size:0.78rem;font-weight:600;text-decoration:none;letter-spacing:0.07em;text-transform:uppercase;transition:background 0.2s;}
+.nav-cta:hover{background:var(--amber-bright);}
+
+.page-hero{background:var(--ink);padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,122,8,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,122,8,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--amber) 30%,var(--amber-bright) 70%,transparent);}
+.hero-inner{position:relative;max-width:680px;}
+.page-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.page-eyebrow::after{content:'';display:inline-block;width:40px;height:1px;background:var(--amber);opacity:0.5;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;}
+.page-title em{color:var(--amber-bright);font-style:italic;}
+.page-subtitle{font-size:1rem;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.85;}
+
+/* Main contact layout */
+.contact-main{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+
+/* Left — details */
+.contact-left{background:var(--ink-mid);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.cl-label{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:1rem;}
+.cl-title{font-family:var(--serif);font-size:2rem;color:var(--white);line-height:1.15;margin-bottom:1.5rem;}
+.cl-intro{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:2.5rem;}
+
+.contact-items{display:flex;flex-direction:column;gap:0;}
+.ci{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.ci:last-child{border-bottom:none;}
+.ci-icon{width:36px;height:36px;background:rgba(232,160,32,0.12);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--amber-bright);}
+.ci-content{}
+.ci-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.2rem;}
+.ci-value{font-size:0.92rem;color:var(--white);font-weight:400;}
+.ci-value a{color:var(--white);text-decoration:none;}
+.ci-value a:hover{color:var(--amber-bright);}
+.ci-sub{font-size:0.75rem;color:rgba(255,255,255,0.35);margin-top:2px;}
+
+.availability{margin-top:2rem;padding:1.25rem;background:rgba(255,255,255,0.04);border-radius:2px;border:1px solid rgba(255,255,255,0.07);}
+.av-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:0.5rem;}
+.av-text{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.7;}
+
+/* Right — form */
+.contact-right{background:var(--white);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.form-title{font-family:var(--serif);font-size:1.5rem;color:var(--ink);margin-bottom:0.5rem;}
+.form-sub{font-size:0.82rem;color:var(--ink-soft);margin-bottom:2rem;line-height:1.7;}
+
+.form-group{margin-bottom:1.25rem;}
+.form-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:0.4rem;display:block;}
+.form-input{width:100%;padding:0.7rem 0.9rem;border:1.5px solid var(--sand-dark);border-radius:2px;font-family:var(--sans);font-size:0.88rem;color:var(--ink);background:var(--sand);transition:border-color 0.2s;}
+.form-input:focus{outline:none;border-color:var(--amber);}
+.form-input::placeholder{color:var(--ink-soft);opacity:0.6;}
+select.form-input{cursor:pointer;}
+textarea.form-input{resize:vertical;min-height:120px;line-height:1.6;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-note{font-size:0.72rem;color:var(--ink-soft);margin-top:0.3rem;line-height:1.5;}
+
+.btn-submit{width:100%;background:var(--amber);color:var(--white);padding:0.9rem 2rem;font-weight:600;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s;margin-top:0.5rem;}
+.btn-submit:hover{background:var(--amber-bright);}
+
+.form-success{display:none;padding:1.25rem 1.5rem;background:var(--green-pale);border-left:3px solid var(--green);border-radius:2px;font-size:0.88rem;color:var(--green);line-height:1.7;margin-top:1rem;}
+.form-success strong{display:block;margin-bottom:0.2rem;}
+
+/* Engagement types */
+.engage-section{background:var(--sand-dark);padding:5rem 4rem;}
+.s-label{font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;}
+.s-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--ink);line-height:1.1;margin-bottom:0.75rem;}
+.engage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--sand);margin-top:2rem;}
+.engage-card{background:var(--sand-dark);padding:1.75rem 2rem;transition:background 0.2s;}
+.engage-card:hover{background:var(--white);}
+.eg-icon{font-size:1.5rem;margin-bottom:0.75rem;opacity:0.5;}
+.eg-title{font-family:var(--serif);font-size:1rem;color:var(--ink);margin-bottom:0.4rem;}
+.eg-desc{font-size:0.8rem;color:var(--ink-soft);line-height:1.7;}
+
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:var(--serif);font-size:1.05rem;color:var(--white);}
+.footer-brand span{color:var(--amber-bright);}
+.footer-note{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;}
+.footer-links a:hover{color:var(--amber-bright);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}.nav-links{display:none;}
+  .contact-main{grid-template-columns:1fr;}
+  .contact-left,.contact-right{padding:3rem 1.5rem;}
+  .engage-section{padding-left:1.5rem;padding-right:1.5rem;}
+  .form-row{grid-template-columns:1fr;}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DamSafetyConsult<span>.in</span></div>
+    <div class="nav-tagline">Dam Safety Engineering · India</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="training.html">Training</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta active" style="background:var(--amber-bright);">Engage Us</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-bar"></div>
+  <div class="hero-inner">
+    <div class="page-eyebrow">Contact</div>
+    <h1 class="page-title">Let's Discuss Your<br>Dam Safety <em>Requirements</em></h1>
+    <p class="page-subtitle">Whether you need a CDSE report, an EAP, an IDF review, a risk assessment, or a training programme for your state — describe your requirement below and we will respond within 24–48 hours.</p>
+  </div>
+</section>
+
+<div class="contact-main">
+
+  <!-- LEFT: DETAILS -->
+  <div class="contact-left">
+    <div class="cl-label">Direct Contact</div>
+    <h2 class="cl-title">Er. Rakesh Gaurana</h2>
+    <p class="cl-intro">Dam Safety &amp; Hydraulic Structures Consultant. Retired Deputy Director, CWC. Technical Consultant, NDSA (2023–2026). MTech, IIT Delhi. Available for consulting assignments across India.</p>
+
+    <div class="contact-items">
+      <div class="ci">
+        <div class="ci-icon">✉</div>
+        <div class="ci-content">
+          <div class="ci-label">Email</div>
+          <div class="ci-value"><a href="mailto:rgaurana@gmail.com">rgaurana@gmail.com</a></div>
+          <div class="ci-sub">Response within 24–48 hours</div>
+        </div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon">☎</div>
+        <div class="ci-content">
+          <div class="ci-label">Phone / WhatsApp</div>
+          <div class="ci-value"><a href="tel:+919891656279">+91-9891656279</a></div>
+          <div class="ci-sub">Calls and WhatsApp — working hours IST</div>
+        </div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon">⚑</div>
+        <div class="ci-content">
+          <div class="ci-label">Base Location</div>
+          <div class="ci-value">New Delhi, India</div>
+          <div class="ci-sub">Available for assignments nationwide</div>
+        </div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon">⊞</div>
+        <div class="ci-content">
+          <div class="ci-label">Specialisation</div>
+          <div class="ci-value">Dam Safety · DSA 2021 · Hydraulic Structures</div>
+          <div class="ci-sub">HP · Uttarakhand · Manipur · Pan-India</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="availability">
+      <div class="av-label">Availability</div>
+      <div class="av-text">Available for short-term assignments (CDSE, EAP, IDF review), long-term team leader / advisor roles, and training programme delivery. Currently accepting new engagements. Please describe your requirement and timeline in the form.</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="contact-right">
+    <div class="form-title">Send an Enquiry</div>
+    <p class="form-sub">Fill in as much detail as you can — the more context you provide, the more specific and useful the response will be.</p>
+
+    <form id="contactForm" onsubmit="submitForm(event)">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name *</label>
+          <input class="form-input" type="text" id="fname" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organisation</label>
+          <input class="form-input" type="text" id="forg" placeholder="Department / Company">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input class="form-input" type="email" id="femail" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone / WhatsApp</label>
+          <input class="form-input" type="tel" id="fphone" placeholder="+91-XXXXXXXXXX">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Nature of Enquiry *</label>
+        <select class="form-input" id="ftype" required>
+          <option value="">— Select —</option>
+          <option>DSA 2021 Compliance / CDSE Report</option>
+          <option>Dam Break Analysis / EAP Preparation</option>
+          <option>IDF Review / PMF Study</option>
+          <option>Hydraulic Structure Design or Review</option>
+          <option>Dam Inspection / Risk Assessment</option>
+          <option>Training &amp; Capacity Building</option>
+          <option>Advisory / Team Leader Role</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Dam / Project Name</label>
+        <input class="form-input" type="text" id="fdam" placeholder="Name of dam or project (if applicable)">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">State / Location</label>
+        <input class="form-input" type="text" id="fstate" placeholder="State and district">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Requirement &amp; Timeline *</label>
+        <textarea class="form-input" id="fmsg" placeholder="Describe your requirement in as much detail as possible — what work is needed, the dam type and size if known, any deadlines or regulatory obligations driving the timeline..." required></textarea>
+        <div class="form-note">The more detail you provide, the more specific and useful the response will be.</div>
+      </div>
+
+      <button type="submit" class="btn-submit">Send Enquiry →</button>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <strong>Enquiry received.</strong>
+      Thank you for writing in. Er. Rakesh Gaurana will respond within 24–48 hours. If your requirement is urgent, please also send a WhatsApp message to +91-9891656279.
+    </div>
+  </div>
+
+</div>
+
+<!-- ENGAGEMENT TYPES -->
+<section class="engage-section">
+  <div class="s-label">How We Work</div>
+  <h2 class="s-title">Types of Engagement</h2>
+  <div class="engage-grid">
+    <div class="engage-card">
+      <div class="eg-icon">⊙</div>
+      <div class="eg-title">Short Assignment</div>
+      <p class="eg-desc">CDSE report, IDF review, EAP preparation, dam safety inspection — defined scope, defined deliverable, fixed timeline.</p>
+    </div>
+    <div class="engage-card">
+      <div class="eg-icon">◎</div>
+      <div class="eg-title">Team Leader / Advisor</div>
+      <p class="eg-desc">Leading or advising a multi-disciplinary dam safety team — providing technical direction, quality review, and regulatory interface on longer engagements.</p>
+    </div>
+    <div class="engage-card">
+      <div class="eg-icon">⊕</div>
+      <div class="eg-title">Training Programme</div>
+      <p class="eg-desc">1–3 day state-level training for dam safety officials — DSA 2021, risk assessment, inspection methodology, EAP preparation, DHARMA portal.</p>
+    </div>
+    <div class="engage-card">
+      <div class="eg-icon">◈</div>
+      <div class="eg-title">Retainer / Ongoing</div>
+      <p class="eg-desc">Periodic technical advisory for dam owners managing multiple specified dams — ongoing support for compliance, inspections, and regulatory queries.</p>
+    </div>
+    <div class="engage-card">
+      <div class="eg-icon">⊗</div>
+      <div class="eg-title">Forensic Investigation</div>
+      <p class="eg-desc">Post-failure or post-incident forensic investigation — field assessment, failure mechanism analysis, findings documentation.</p>
+    </div>
+    <div class="engage-card">
+      <div class="eg-icon">◇</div>
+      <div class="eg-title">DPR Review</div>
+      <p class="eg-desc">Technical examination and review of Detailed Project Reports for dams, barrages, and canal systems — hydraulic, structural, and regulatory aspects.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
+  <div class="footer-note">Er. Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="tools.html">Tools</a>
+    <a href="training.html">Training</a>
+  </div>
+</footer>
+
+<script>
+function submitForm(e){
+  e.preventDefault();
+  // In production this would POST to a form handler
+  // For now show success message
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+}
+</script>
+
+</body>
+</html>

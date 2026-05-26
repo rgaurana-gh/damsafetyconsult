@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Er. Rakesh Gaurana | DamSafetyConsult.in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0f1c2e;
+  --ink-mid:#1e3554;
+  --ink-soft:#4e6a87;
+  --sand:#f6f1e9;
+  --sand-dark:#eae3d6;
+  --amber:#b87a08;
+  --amber-bright:#e8a020;
+  --amber-pale:#fdf3de;
+  --white:#ffffff;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);overflow-x:hidden;font-size:16px;line-height:1.6;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 4rem;background:rgba(12,22,38,0.97);border-bottom:1px solid rgba(232,160,32,0.12);}
+.nav-brand{display:flex;flex-direction:column;line-height:1;}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);}
+.nav-logo span{color:var(--amber-bright);}
+.nav-tagline{font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--amber-bright);}
+.nav-cta{background:var(--amber);color:var(--white);padding:0.55rem 1.4rem;border-radius:2px;font-size:0.78rem;font-weight:600;text-decoration:none;letter-spacing:0.07em;text-transform:uppercase;transition:background 0.2s;}
+.nav-cta:hover{background:var(--amber-bright);}
+
+/* ── PAGE HERO ── */
+.page-hero{background:var(--ink);padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,122,8,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,122,8,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.page-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--amber) 30%,var(--amber-bright) 70%,transparent);}
+.hero-inner{position:relative;max-width:780px;}
+.page-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.page-eyebrow::after{content:'';display:inline-block;width:40px;height:1px;background:var(--amber);opacity:0.5;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;}
+.page-title em{color:var(--amber-bright);font-style:italic;}
+.page-subtitle{font-size:1rem;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.8;max-width:600px;}
+
+/* ── FILTER BAR ── */
+.filter-bar{
+  background:var(--ink-mid);padding:1rem 4rem;
+  display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:sticky;top:64px;z-index:100;
+}
+.filter-label{font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-right:0.5rem;}
+.filter-btn{
+  font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.4rem 1rem;border-radius:2px;border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.5);background:transparent;cursor:pointer;transition:all 0.2s;
+}
+.filter-btn:hover{border-color:var(--amber);color:var(--amber-bright);}
+.filter-btn.active{background:var(--amber);border-color:var(--amber);color:var(--ink);}
+
+/* ── STATS ROW ── */
+.stats-row{
+  background:var(--sand-dark);padding:2.5rem 4rem;
+  display:flex;gap:0;border-bottom:1px solid var(--sand);
+  flex-wrap:wrap;
+}
+.stat-item{
+  padding:0 3rem 0 0;margin-right:3rem;
+  border-right:1px solid var(--sand);
+}
+.stat-item:last-child{border-right:none;}
+.stat-n{font-family:var(--serif);font-size:2.2rem;color:var(--ink);line-height:1;}
+.stat-l{font-size:0.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
+
+/* ── FEATURED PROJECT ── */
+.featured{
+  background:var(--ink-mid);padding:5rem 4rem;
+  display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start;
+}
+.feat-label{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:0.75rem;}
+.feat-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);color:var(--white);line-height:1.1;margin-bottom:1.25rem;}
+.feat-lead{font-size:0.95rem;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:1.5rem;}
+.feat-detail{font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:2rem;}
+.feat-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
+.feat-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.75rem;border-radius:2px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);}
+.feat-tag.amber{background:rgba(184,122,8,0.2);color:var(--amber-bright);}
+
+.feat-sidebar{display:flex;flex-direction:column;gap:0;}
+.feat-meta-item{padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.05);}
+.feat-meta-item:last-child{border-bottom:none;}
+.fmi-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.25rem;}
+.fmi-value{font-size:0.85rem;color:rgba(255,255,255,0.75);font-weight:400;line-height:1.5;}
+
+/* ── PROJECT GRID ── */
+.projects-section{padding:4rem;}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2.5rem;}
+.s-label{font-size:0.7rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);}
+.s-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--ink);line-height:1.1;margin-top:0.3rem;}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5px;background:var(--sand-dark);}
+
+.proj-card{
+  background:var(--white);padding:2rem 2.25rem;
+  border-left:3px solid transparent;
+  transition:border-color 0.2s,background 0.15s;
+  cursor:default;
+}
+.proj-card:hover{border-left-color:var(--amber);background:var(--sand);}
+.proj-cat{font-size:0.67rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;}
+.proj-name{font-family:var(--serif);font-size:1.15rem;color:var(--ink);margin-bottom:0.3rem;line-height:1.25;}
+.proj-loc{font-size:0.75rem;color:var(--ink-soft);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem;}
+.proj-loc::before{content:'◎';font-size:0.65rem;color:var(--amber);}
+.proj-desc{font-size:0.83rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.proj-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:2px;background:var(--sand-dark);color:var(--ink-soft);}
+.proj-role{font-size:0.72rem;color:var(--amber);font-weight:600;margin-bottom:0.5rem;letter-spacing:0.04em;}
+
+/* ── FORENSIC HIGHLIGHT ── */
+.forensic{
+  background:var(--ink);padding:4rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  margin:0;
+}
+.for-text .feat-label{color:var(--amber-bright);}
+.for-text .feat-title{font-family:var(--serif);font-size:2rem;color:var(--white);line-height:1.15;margin-bottom:1rem;}
+.for-text p{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:0.75rem;}
+.for-facts{display:flex;flex-direction:column;gap:0;}
+.for-fact{padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.05);}
+.for-fact:last-child{border-bottom:none;}
+.ff-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.3rem;}
+.ff-value{font-size:0.88rem;color:rgba(255,255,255,0.75);line-height:1.5;}
+
+/* ── TRAINING PROJECTS ── */
+.training-proj{background:var(--sand-dark);padding:4rem;}
+.tp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--sand);margin-top:2rem;}
+.tp-card{background:var(--sand-dark);padding:1.75rem 2rem;}
+.tp-card:hover{background:var(--white);}
+.tp-state{font-family:var(--serif);font-size:1.8rem;color:var(--amber);margin-bottom:0.3rem;}
+.tp-name{font-size:0.88rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem;}
+.tp-scope{font-size:0.8rem;color:var(--ink-soft);line-height:1.7;}
+
+/* ── MAP PLACEHOLDER ── */
+.map-section{background:var(--white);padding:4rem;}
+.map-placeholder{
+  margin-top:2rem;height:320px;background:var(--sand);
+  border:1px solid var(--sand-dark);border-radius:2px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;
+}
+.mp-icon{font-size:2.5rem;opacity:0.2;}
+.mp-text{font-size:0.8rem;color:var(--ink-soft);letter-spacing:0.06em;text-transform:uppercase;}
+/* Simple India map dots */
+.map-dots{position:relative;width:280px;height:220px;margin-top:1rem;}
+.dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--amber);}
+.dot-label{position:absolute;font-size:0.65rem;color:var(--ink-soft);white-space:nowrap;letter-spacing:0.04em;}
+.dot::after{content:'';position:absolute;width:20px;height:20px;border-radius:50%;border:1px solid var(--amber);top:-5px;left:-5px;opacity:0.4;}
+
+/* ── CTA ── */
+.cta-strip{background:var(--ink-mid);padding:4rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.cta-title{font-family:var(--serif);font-size:2rem;color:var(--white);margin-bottom:0.5rem;}
+.cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.5);max-width:520px;line-height:1.8;}
+.cta-actions{display:flex;flex-direction:column;gap:1rem;align-items:flex-end;}
+.btn-amber{background:var(--amber);color:var(--white);padding:0.9rem 2rem;font-weight:600;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;white-space:nowrap;}
+.btn-amber:hover{background:var(--amber-bright);}
+.btn-ghost{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:0.9rem 2rem;font-size:0.85rem;text-decoration:none;border-radius:2px;transition:all 0.2s;white-space:nowrap;}
+.btn-ghost:hover{border-color:var(--amber-bright);color:var(--amber-bright);}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:var(--serif);font-size:1.05rem;color:var(--white);}
+.footer-brand span{color:var(--amber-bright);}
+.footer-note{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;}
+.footer-links a:hover{color:var(--amber-bright);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .page-hero,.projects-section,.forensic,.training-proj,.map-section,.cta-strip{padding-left:1.5rem;padding-right:1.5rem;}
+  .filter-bar{padding:1rem 1.5rem;}
+  .stats-row{padding:2rem 1.5rem;gap:1.5rem;}
+  .stat-item{border-right:none;padding-right:0;margin-right:0;}
+  .featured{grid-template-columns:1fr;padding:3rem 1.5rem;}
+  .forensic,.cta-strip{grid-template-columns:1fr;}
+  .cta-actions{align-items:flex-start;}
+  .proj-grid{grid-template-columns:1fr;}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DamSafetyConsult<span>.in</span></div>
+    <div class="nav-tagline">Dam Safety Engineering · India</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="training.html">Training</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Engage Us</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-bar"></div>
+  <div class="hero-inner">
+    <div class="page-eyebrow">Projects</div>
+    <h1 class="page-title">A Career Built on<br><em>Real Projects</em></h1>
+    <p class="page-subtitle">From the Farakka Barrage Navigation Lock in 1987 to NDSA forensic investigations in 2024 — over three decades of assignments spanning dam safety, barrage design, hydropower, irrigation, and inter-basin water transfer across India and beyond.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+  <button class="filter-btn" onclick="filterProjects('dam-safety')">Dam Safety</button>
+  <button class="filter-btn" onclick="filterProjects('barrage')">Barrage Design</button>
+  <button class="filter-btn" onclick="filterProjects('hep')">Hydropower</button>
+  <button class="filter-btn" onclick="filterProjects('irrigation')">Irrigation</button>
+  <button class="filter-btn" onclick="filterProjects('training')">Training</button>
+</div>
+
+<!-- STATS ROW -->
+<div class="stats-row">
+  <div class="stat-item"><div class="stat-n">35+</div><div class="stat-l">Years of Projects</div></div>
+  <div class="stat-item"><div class="stat-n">15+</div><div class="stat-l">Major Assignments</div></div>
+  <div class="stat-item"><div class="stat-n">12+</div><div class="stat-l">States &amp; UTs</div></div>
+  <div class="stat-item"><div class="stat-n">2</div><div class="stat-l">International Projects</div></div>
+  <div class="stat-item"><div class="stat-n">1</div><div class="stat-l">Forensic Investigation</div></div>
+</div>
+
+<!-- FEATURED PROJECT -->
+<div class="featured">
+  <div class="feat-text">
+    <div class="feat-label">Featured Assignment · Dam Safety</div>
+    <h2 class="feat-title">Luti Dam Failure — Forensic Investigation</h2>
+    <p class="feat-lead">Led NDSA's rapid forensic investigation of the Luti Dam failure in Chhattisgarh — one of the first post-failure investigations conducted under the Dam Safety Act 2021 framework.</p>
+    <p class="feat-detail">Dam failures in India have historically been inadequately documented from a forensic standpoint. The Luti Dam investigation involved field investigation of the breach site, analysis of failure mechanism and sequence, review of available design and inspection records, and preparation of findings for NDSA. The assignment required combining rapid risk assessment methodology, structural engineering judgment, and regulatory understanding of what DSA 2021 requires post-failure. This type of forensic work is rare — and the institutional knowledge gained is directly applicable to understanding failure modes in other ageing dams across the country.</p>
+    <div class="feat-tags">
+      <span class="feat-tag amber">Lead Investigator</span>
+      <span class="feat-tag amber">NDSA Assignment</span>
+      <span class="feat-tag">DSA 2021</span>
+      <span class="feat-tag">Forensic Analysis</span>
+      <span class="feat-tag">Breach Mechanism</span>
+      <span class="feat-tag">Post-Failure Investigation</span>
+    </div>
+  </div>
+  <div class="feat-sidebar">
+    <div class="feat-meta-item">
+      <div class="fmi-label">Client / Employer</div>
+      <div class="fmi-value">National Dam Safety Authority (NDSA), Government of India</div>
+    </div>
+    <div class="feat-meta-item">
+      <div class="fmi-label">Location</div>
+      <div class="fmi-value">Chhattisgarh, India</div>
+    </div>
+    <div class="feat-meta-item">
+      <div class="fmi-label">Role</div>
+      <div class="fmi-value">Lead Investigator</div>
+    </div>
+    <div class="feat-meta-item">
+      <div class="fmi-label">Period</div>
+      <div class="fmi-value">2023–2024 (during NDSA consultancy)</div>
+    </div>
+    <div class="feat-meta-item">
+      <div class="fmi-label">Regulatory Framework</div>
+      <div class="fmi-value">Dam Safety Act 2021 — post-failure investigation mandate</div>
+    </div>
+    <div class="feat-meta-item">
+      <div class="fmi-label">Significance</div>
+      <div class="fmi-value">One of the first formal forensic investigations under DSA 2021</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN PROJECT GRID -->
+<section class="projects-section">
+  <div class="section-head">
+    <div>
+      <div class="s-label">Full Portfolio</div>
+      <div class="s-title">Key Projects &amp; Assignments</div>
+    </div>
+  </div>
+
+  <div class="proj-grid" id="projGrid">
+
+    <div class="proj-card" data-cat="barrage">
+      <div class="proj-cat">Barrage Design · Jharkhand</div>
+      <div class="proj-name">Kharkai Barrage &amp; Canal System</div>
+      <div class="proj-loc">River Kharkai, Ganjia, Jharkhand</div>
+      <div class="proj-role">Deputy Director — Central Water Commission</div>
+      <p class="proj-desc">234-m barrage across river Kharkai (tributary of Subernarekha) for municipal and agricultural water supply. Full hydraulic and structural design of all barrage components and river training works per IS codes. Included design of Larinier-type vertical-slot fish pass — a specialist element rarely included in Indian barrage designs of this scale.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">IS 6512</span>
+        <span class="proj-tag">IS 12720</span>
+        <span class="proj-tag">Fish Pass</span>
+        <span class="proj-tag">Foundation Design</span>
+        <span class="proj-tag">River Training</span>
+        <span class="proj-tag">2013–2017</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="hep">
+      <div class="proj-cat">Hydropower · Uttarakhand</div>
+      <div class="proj-name">Tapovan Vishnugad HEP (4 × 130 MW)</div>
+      <div class="proj-loc">River Dhauliganga / Alaknanda, Chamoli District</div>
+      <div class="proj-role">Deputy Director — CWC · Client: NTPC Limited</div>
+      <p class="proj-desc">Underground powerhouse project comprising barrage, desilting basin, intake structure, head race tunnel, and penstock. Detailed planning, design, and construction drawings for the main barrage and all appurtenant structures. Himalayan gorge setting with demanding hydraulic and sediment management requirements.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">520 MW</span>
+        <span class="proj-tag">NTPC</span>
+        <span class="proj-tag">Underground Powerhouse</span>
+        <span class="proj-tag">Himalayan River</span>
+        <span class="proj-tag">Desilting Basin</span>
+        <span class="proj-tag">2013–2017</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="hep">
+      <div class="proj-cat">Hydropower · Uttarakhand</div>
+      <div class="proj-name">Koteshwar HEP Powerhouse Complex</div>
+      <div class="proj-loc">River Bhagirathi, Uttarakhand</div>
+      <div class="proj-role">Director / Deputy Director — CWC</div>
+      <p class="proj-desc">Design consultancy for entire powerhouse complex including intake, powerhouse, and tailrace structures. Addressed and resolved special technical challenges during both design and construction phases — extending over 12 years of CWC service. Long-term project familiarity enabled continuity of technical judgment across the project lifecycle.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Powerhouse Design</span>
+        <span class="proj-tag">Intake Structure</span>
+        <span class="proj-tag">Tailrace</span>
+        <span class="proj-tag">Bhagirathi</span>
+        <span class="proj-tag">2001–2013</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="irrigation">
+      <div class="proj-cat">Inter-Basin Transfer · Gujarat / Maharashtra</div>
+      <div class="proj-name">Par-Tapi-Narmada Link Project</div>
+      <div class="proj-loc">West-flowing rivers Par &amp; Tapi → North Gujarat</div>
+      <div class="proj-role">Deputy Director — CWC · Client: NWDA</div>
+      <p class="proj-desc">Transfer of surplus monsoon flows from rivers Par and Tapi to water-deficit North Gujarat via 7 dams and approximately 400 km conveyance system including 5.5 km of tunnels. Detailed planning, design, and DPR drawings for the link canal and appurtenant structures — head regulators, cross-regulators, canal falls, aqueducts, syphons. Prepared design chapter for the DPR.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Inter-Basin Transfer</span>
+        <span class="proj-tag">7 Dams</span>
+        <span class="proj-tag">400 km Canal</span>
+        <span class="proj-tag">NWDA</span>
+        <span class="proj-tag">DPR</span>
+        <span class="proj-tag">2013–2017</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="irrigation">
+      <div class="proj-cat">Lift Irrigation · Uttar Pradesh</div>
+      <div class="proj-name">Badaun Lift Irrigation Project</div>
+      <div class="proj-loc">Narora Barrage (Ganga), Badaun &amp; Sambhal Districts</div>
+      <div class="proj-role">Deputy Director — CWC · Client: UP Irrigation Department</div>
+      <p class="proj-desc">102 cumecs diversion of surplus monsoon discharge at Narora Barrage through a canal head regulator, 20 km gravity main canal, 15-m lift at Mahawa Nadi, and 32 km gravity canal — irrigating approximately 1.37 lakh hectares across Badaun and Sambhal districts. Review of design documents, DPR review, coordination and optimisation.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">102 cumecs</span>
+        <span class="proj-tag">1.37 lakh ha</span>
+        <span class="proj-tag">Lift Irrigation</span>
+        <span class="proj-tag">Ganga Diversion</span>
+        <span class="proj-tag">2016</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="irrigation">
+      <div class="proj-cat">Irrigation Augmentation · Uttar Pradesh</div>
+      <div class="proj-name">Arjun Sahayak Pariyojna</div>
+      <div class="proj-loc">River Dhasan → Arjun, Kabrai &amp; Chandrawal Dams</div>
+      <div class="proj-role">Consultant · Client: Government of Uttar Pradesh</div>
+      <p class="proj-desc">Diversion of surplus monsoon flows from Lahchura Dam on river Dhasan via feeder canal to augment three downstream dams. Kabrai Dam raised by 9.23 m to bring an additional 44,381 hectares under irrigation. Review and revision of irrigation outlet design; issue of construction drawings aligned with updated canal discharges.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Dam Raising</span>
+        <span class="proj-tag">44,381 ha</span>
+        <span class="proj-tag">Feeder Canal</span>
+        <span class="proj-tag">Outlet Design</span>
+        <span class="proj-tag">2018–2019</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="barrage">
+      <div class="proj-cat">Barrage · Navigation Lock</div>
+      <div class="proj-name">Farakka Barrage Navigation Lock Control Tower</div>
+      <div class="proj-loc">River Ganga, West Bengal</div>
+      <div class="proj-role">Design Assistant — CWC</div>
+      <p class="proj-desc">Design of Navigation Lock Control Tower for the Farakka Barrage — one of India's largest and most strategically important hydraulic structures on the Ganga. An early career assignment that established the foundation of barrage design expertise carried forward across 35 years of practice.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Farakka Barrage</span>
+        <span class="proj-tag">Navigation Lock</span>
+        <span class="proj-tag">River Ganga</span>
+        <span class="proj-tag">1987–1991</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="dam-safety">
+      <div class="proj-cat">Risk Assessment · NDSA / World Bank</div>
+      <div class="proj-name">Nationwide Rapid Risk Assessment Training Programme</div>
+      <div class="proj-loc">Pan-India · Based at NDSA, New Delhi</div>
+      <div class="proj-role">Technical Consultant — NDSA · Trained Trainer</div>
+      <p class="proj-desc">Received in-situ World Bank rapid risk assessment training at Ichari Dam, Uttarakhand (March 2024). Subsequently trained field engineers across India on behalf of NDSA in the RRSSD methodology — FI × PI risk index computation, sub-score interpretation, and priority ranking for Tier 2 assessment. Multiplied the programme's reach to dam safety engineers nationwide.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">World Bank DRIP</span>
+        <span class="proj-tag">RRSSD Methodology</span>
+        <span class="proj-tag">Ichari Dam</span>
+        <span class="proj-tag">National Training</span>
+        <span class="proj-tag">2024</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="dam-safety">
+      <div class="proj-cat">Digital Platform · NDSA</div>
+      <div class="proj-name">DHARMA Portal — Development &amp; National Training</div>
+      <div class="proj-loc">National Water Academy, Pune · Pan-India</div>
+      <div class="proj-role">Technical Consultant — NDSA</div>
+      <p class="proj-desc">Contributed to formulation of the inspection questionnaire on NDSA's DHARMA digital dam safety portal. Trained dam safety officials at NWA Pune (April 2024) on operational use of DHARMA — enabling state-level digital compliance tracking under DSA 2021. DHARMA is now the primary platform for dam inspection reporting and compliance monitoring in India.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">DHARMA Portal</span>
+        <span class="proj-tag">DSA 2021</span>
+        <span class="proj-tag">NWA Pune</span>
+        <span class="proj-tag">Digital Compliance</span>
+        <span class="proj-tag">2024</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="barrage">
+      <div class="proj-cat">Hydropower Barrage · Uttarakhand</div>
+      <div class="proj-name">Joshiyara Barrage — Hydraulic Safety Assessment</div>
+      <div class="proj-loc">River Bhagirathi, Maneri Bhali HEP Stage II</div>
+      <div class="proj-role">Dam Safety Consultant</div>
+      <p class="proj-desc">Comprehensive hydraulic safety review of the Joshiyara Barrage — including stilling basin performance assessment (EDA calculations, Froude number zone verification), tailwater adequacy, PMF deficiency analysis, and ALARP-framed remediation recommendation. Identified F₁ = 2.79 as falling in the oscillating jump zone outside the intended Basin II Froude range. Recommended raised solid end sill as the most robust retrofit for a boulder-carrying Himalayan river.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Stilling Basin Review</span>
+        <span class="proj-tag">PMF Assessment</span>
+        <span class="proj-tag">ALARP</span>
+        <span class="proj-tag">Himalayan Barrage</span>
+        <span class="proj-tag">CDSE Report</span>
+        <span class="proj-tag">Bhagirathi</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="dam-safety">
+      <div class="proj-cat">Policy &amp; Publications · NDSA</div>
+      <div class="proj-name">NDSA Annual Reports &amp; Dam Risk Reduction Publication</div>
+      <div class="proj-loc">NDSA, Government of India · New Delhi</div>
+      <div class="proj-role">Technical Consultant — NDSA</div>
+      <p class="proj-desc">Authored content for NDSA Annual Reports 2022–23, 2023–24, and 2024–25 — covering data visualisation, formatting and technical write-up of India's dam safety status. Also authored the NDSA publication on dam risk reduction — a policy and technical document on reducing risk from India's ageing dam portfolio under the DSA 2021 framework.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">NDSA Publication</span>
+        <span class="proj-tag">Dam Risk Reduction</span>
+        <span class="proj-tag">Annual Reports</span>
+        <span class="proj-tag">Policy</span>
+        <span class="proj-tag">2023–2025</span>
+      </div>
+    </div>
+
+    <div class="proj-card" data-cat="barrage">
+      <div class="proj-cat">Barrage · Nepal (International)</div>
+      <div class="proj-name">Sapta-Kosi–Sun Kosi Project, Nepal</div>
+      <div class="proj-loc">Kosi River System, Nepal</div>
+      <div class="proj-role">Deputy Director — CWC</div>
+      <p class="proj-desc">Technical examination and DPR review for this major Indo-Nepal multipurpose project on the Kosi river system. Part of the broader portfolio of cross-border water resources projects reviewed during the CWC Barrages & Canal Design Directorate period — alongside the Pancheshwar Indo-Nepal Multipurpose Project.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">International</span>
+        <span class="proj-tag">Indo-Nepal</span>
+        <span class="proj-tag">Kosi River</span>
+        <span class="proj-tag">DPR Review</span>
+        <span class="proj-tag">2013–2017</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORENSIC HIGHLIGHT -->
+<div class="forensic">
+  <div class="for-text">
+    <div class="feat-label">Specialist Capability</div>
+    <div class="feat-title">Post-Failure Forensic Investigation</div>
+    <p>When a dam fails, the immediate questions are: what happened, why, and what does it mean for other similar structures? These questions require a rare combination of structural engineering knowledge, field investigation experience, and regulatory understanding.</p>
+    <p>The Luti Dam investigation in Chhattisgarh was conducted as one of NDSA's first formal post-failure investigations under the DSA 2021 framework. The methodology — rapid field assessment, breach mechanism analysis, design record review, and findings documentation — is now available as a consulting service for dam owners, state governments, and regulators facing similar situations.</p>
+  </div>
+  <div class="for-facts">
+    <div class="for-fact">
+      <div class="ff-label">Investigation Type</div>
+      <div class="ff-value">Rapid forensic post-failure investigation under DSA 2021</div>
+    </div>
+    <div class="for-fact">
+      <div class="ff-label">Methodology</div>
+      <div class="ff-value">Field breach investigation + design record review + failure mechanism analysis</div>
+    </div>
+    <div class="for-fact">
+      <div class="ff-label">Output</div>
+      <div class="ff-value">NDSA findings report — breach cause, failure sequence, regulatory implications</div>
+    </div>
+    <div class="for-fact">
+      <div class="ff-label">Significance</div>
+      <div class="ff-value">Among the first post-failure investigations formalised under DSA 2021 framework</div>
+    </div>
+    <div class="for-fact">
+      <div class="ff-label">Transferable Value</div>
+      <div class="ff-value">Failure modes identified inform risk screening of structurally similar dams</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAINING PROJECTS -->
+<section class="training-proj">
+  <div class="s-label">Training Assignments</div>
+  <div class="s-title">Capacity Building Across States</div>
+  <div class="tp-grid">
+    <div class="tp-card">
+      <div class="tp-state">HP</div>
+      <div class="tp-name">Himachal Pradesh</div>
+      <div class="tp-scope">DSA 2021 implementation for SDSO officials and dam owners. Module coverage: the Act and Rules, compliance obligations, inspection requirements, CDSE report structure.</div>
+    </div>
+    <div class="tp-card">
+      <div class="tp-state">UK</div>
+      <div class="tp-name">Uttarakhand</div>
+      <div class="tp-scope">Dam inspection methodology, EAP preparation, rapid risk assessment. Himalayan dam context — specific challenges of high-gradient rivers, seismicity, and sediment.</div>
+    </div>
+    <div class="tp-card">
+      <div class="tp-state">MN</div>
+      <div class="tp-name">Manipur</div>
+      <div class="tp-scope">DSA 2021 compliance for state dam safety organisation. SDSO constitution, inspection protocols, dam owner obligations under the Act.</div>
+    </div>
+    <div class="tp-card">
+      <div class="tp-state">WB</div>
+      <div class="tp-name">NDSA / World Bank DRIP</div>
+      <div class="tp-scope">Nationwide rapid risk assessment training programme — RRSSD methodology, FI × PI scoring, sub-score interpretation, priority queue determination for Tier 2 assessment.</div>
+    </div>
+    <div class="tp-card">
+      <div class="tp-state">PU</div>
+      <div class="tp-name">NWA Pune · DHARMA</div>
+      <div class="tp-scope">National Water Academy, Pune. DHARMA portal operational training — inspection questionnaire, data entry, compliance tracking for dam safety officials.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div>
+    <div class="cta-title">Have a project in mind?</div>
+    <p>Whether it's a CDSE report, a PMF study, a forensic investigation, or a training programme — get in touch to discuss scope and timeline.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn-amber">Get in Touch</a>
+    <a href="services.html" class="btn-ghost">View Services</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
+  <div class="footer-note">Er. Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="tools.html">Tools</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+function filterProjects(cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.style.display='block';
+    } else {
+      card.style.display='none';
+    }
+  });
+  const grid=document.getElementById('projGrid');
+  const visible=[...grid.querySelectorAll('.proj-card')].filter(c=>c.style.display!=='none');
+  grid.style.gridTemplateColumns=visible.length===1?'minmax(340px,600px)':'repeat(auto-fit,minmax(340px,1fr))';
+}
+</script>
+
+</body>
+</html>
