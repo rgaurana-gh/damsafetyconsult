@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA 2021 Compliance Navigator | DamSafetyConsult.in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0f1c2e;--ink-mid:#1e3554;--ink-soft:#4e6a87;
+  --sand:#f6f1e9;--sand-dark:#eae3d6;
+  --amber:#b87a08;--amber-bright:#e8a020;--amber-pale:#fdf3de;
+  --white:#ffffff;
+  --green:#1a7a4a;--green-pale:#e8f5ee;
+  --red:#b03030;--red-pale:#fdeaea;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);overflow-x:hidden;font-size:15px;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(12,22,38,0.97);border-bottom:1px solid rgba(232,160,32,0.12);}
+.nav-brand{display:flex;flex-direction:column;line-height:1;}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--white);}
+.nav-logo span{color:var(--amber-bright);}
+.nav-tagline{font-size:0.6rem;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.nav-back{font-size:0.75rem;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.06em;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.nav-back:hover{color:var(--amber-bright);}
+
+.tool-hero{background:var(--ink);padding:7rem 3rem 3.5rem;position:relative;overflow:hidden;}
+.tool-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,122,8,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,122,8,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.tool-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--amber) 30%,var(--amber-bright) 70%,transparent);}
+.hero-inner{position:relative;max-width:800px;}
+.tool-eyebrow{font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem;}
+.tool-eyebrow::after{content:'';display:inline-block;width:36px;height:1px;background:var(--amber);opacity:0.5;}
+.tool-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.8rem);color:var(--white);line-height:1.05;margin-bottom:0.75rem;}
+.tool-title em{color:var(--amber-bright);font-style:italic;}
+.tool-sub{font-size:0.92rem;color:rgba(255,255,255,0.5);line-height:1.85;max-width:600px;margin-bottom:1.5rem;}
+.tool-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+.meta-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:rgba(255,255,255,0.4);}
+
+.tool-wrap{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem 5rem;}
+
+/* SCOPE */
+.scope-card{background:var(--white);border:1.5px solid var(--sand-dark);border-radius:4px;padding:2rem;margin-bottom:2rem;}
+.card-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;}
+.card-step{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--white);font-family:var(--serif);font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card-title{font-family:var(--serif);font-size:1.3rem;color:var(--ink);}
+.card-subtitle{font-size:0.8rem;color:var(--ink-soft);margin-top:0.1rem;}
+.scope-intro{font-size:0.85rem;color:var(--ink-soft);line-height:1.8;margin-bottom:1.5rem;padding:1rem;background:var(--amber-pale);border-left:3px solid var(--amber);border-radius:2px;}
+.scope-intro strong{color:var(--ink);}
+.q-block{margin-bottom:1.25rem;}
+.q-label{font-size:0.8rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem;}
+.q-ref{font-size:0.68rem;color:var(--ink-soft);font-style:italic;margin-left:0.5rem;font-weight:400;}
+.q-hint{font-size:0.75rem;color:var(--ink-soft);margin-bottom:0.5rem;padding:0.5rem 0.75rem;background:var(--sand);border-radius:2px;line-height:1.6;}
+.radio-row{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.radio-btn{padding:0.5rem 1.25rem;border-radius:2px;border:1.5px solid var(--sand-dark);font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;background:var(--sand);color:var(--ink-soft);user-select:none;}
+.radio-btn.selected-yes{background:var(--green);border-color:var(--green);color:var(--white);}
+.radio-btn.selected-no{background:var(--red);border-color:var(--red);color:var(--white);}
+.radio-btn:hover{border-color:var(--amber);}
+.scope-result{display:none;padding:1.25rem 1.5rem;border-radius:3px;margin-top:1rem;font-size:0.88rem;line-height:1.7;}
+.scope-result.in-scope{background:var(--green-pale);border-left:3px solid var(--green);color:var(--green);}
+.scope-result.out-scope{background:var(--red-pale);border-left:3px solid var(--red);color:var(--red);}
+.scope-result strong{display:block;font-size:1rem;margin-bottom:0.3rem;}
+.btn-primary{background:var(--amber);color:var(--white);padding:0.75rem 1.75rem;font-weight:600;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s;margin-top:1.25rem;}
+.btn-primary:hover{background:var(--amber-bright);}
+
+/* DASHBOARD */
+#dashboard{display:none;}
+.dash-intro{font-size:0.85rem;color:var(--ink-soft);line-height:1.8;margin-bottom:1.5rem;padding:1rem 1.25rem;background:var(--white);border:1px solid var(--sand-dark);border-radius:3px;}
+
+/* Chapter groupings */
+.chapter-group{margin-bottom:0.5rem;}
+.chapter-label{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);padding:0.6rem 0;border-bottom:1px solid var(--sand-dark);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.6rem;}
+.chapter-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--amber);}
+
+/* Score */
+.score-bar-wrap{background:var(--white);border:1.5px solid var(--sand-dark);border-radius:4px;padding:1.5rem 2rem;margin-bottom:2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.score-circle{width:80px;height:80px;border-radius:50%;border:5px solid var(--sand-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.4s;}
+.score-num{font-family:var(--serif);font-size:1.5rem;color:var(--ink);line-height:1;}
+.score-denom{font-size:0.62rem;color:var(--ink-soft);letter-spacing:0.04em;}
+.score-info{flex:1;}
+.score-title{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:0.25rem;}
+.score-desc{font-size:0.78rem;color:var(--ink-soft);line-height:1.6;}
+.progress-track{height:6px;background:var(--sand-dark);border-radius:3px;margin-top:0.75rem;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;background:var(--amber);transition:width 0.5s,background 0.4s;}
+
+/* Domain cards */
+.domain-grid{display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;}
+.domain-card{background:var(--white);border:1.5px solid var(--sand-dark);border-radius:4px;overflow:hidden;transition:border-color 0.2s;}
+.domain-card.status-compliant{border-color:var(--green);}
+.domain-card.status-partial{border-color:var(--amber);}
+.domain-card.status-non{border-color:var(--red);}
+.domain-header{display:flex;align-items:center;gap:0.9rem;padding:1.1rem 1.4rem;cursor:pointer;transition:background 0.15s;user-select:none;}
+.domain-header:hover{background:var(--sand);}
+.domain-num{font-family:var(--serif);font-size:1.4rem;color:var(--sand-dark);width:32px;flex-shrink:0;font-style:italic;line-height:1;}
+.domain-info{flex:1;min-width:0;}
+.domain-name{font-family:var(--serif);font-size:1rem;color:var(--ink);line-height:1.2;}
+.domain-ref{font-size:0.65rem;color:var(--ink-soft);letter-spacing:0.05em;margin-top:2px;}
+.domain-status-btn{display:flex;gap:0.35rem;align-items:center;flex-shrink:0;}
+.status-pill{font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.28rem 0.6rem;border-radius:2px;border:1.5px solid var(--sand-dark);cursor:pointer;transition:all 0.15s;color:var(--ink-soft);background:var(--sand);white-space:nowrap;}
+.status-pill:hover{border-color:var(--amber);}
+.status-pill.active-c{background:var(--green);border-color:var(--green);color:var(--white);}
+.status-pill.active-p{background:var(--amber);border-color:var(--amber);color:var(--white);}
+.status-pill.active-n{background:var(--red);border-color:var(--red);color:var(--white);}
+.domain-chevron{font-size:0.7rem;color:var(--ink-soft);transition:transform 0.2s;margin-left:0.4rem;flex-shrink:0;}
+.domain-card.open .domain-chevron{transform:rotate(180deg);}
+.domain-body{display:none;padding:0 1.4rem 1.4rem;border-top:1px solid var(--sand-dark);}
+.domain-card.open .domain-body{display:block;}
+
+.why-box{background:var(--amber-pale);border-left:3px solid var(--amber);padding:0.9rem 1.1rem;border-radius:2px;margin:1rem 0;}
+.why-label{font-size:0.63rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.3rem;}
+.why-text{font-size:0.82rem;color:var(--ink);line-height:1.75;}
+.req-label{font-size:0.63rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin:0.75rem 0 0.4rem;}
+.req-list{list-style:none;display:flex;flex-direction:column;gap:0.35rem;}
+.req-list li{font-size:0.82rem;color:var(--ink-soft);padding-left:1.2rem;position:relative;line-height:1.6;}
+.req-list li::before{content:'→';position:absolute;left:0;color:var(--amber);font-size:0.7rem;top:2px;}
+.clause-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.75rem;}
+.clause-tag{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:2px;background:var(--sand-dark);color:var(--ink-soft);}
+.notes-label{font-size:0.68rem;color:var(--ink-soft);margin-top:0.75rem;letter-spacing:0.04em;}
+.notes-field{width:100%;margin-top:0.4rem;padding:0.6rem 0.8rem;border:1px solid var(--sand-dark);border-radius:2px;font-family:var(--sans);font-size:0.8rem;color:var(--ink);background:var(--sand);resize:vertical;min-height:52px;transition:border-color 0.2s;}
+.notes-field:focus{outline:none;border-color:var(--amber);}
+
+/* REPORT */
+#report-section{display:none;margin-top:2rem;}
+.report-card{background:var(--ink);border-radius:4px;padding:2rem;color:var(--white);}
+.report-title{font-family:var(--serif);font-size:1.5rem;color:var(--white);margin-bottom:0.3rem;}
+.report-sub{font-size:0.75rem;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;}
+.report-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.05);margin-bottom:1.5rem;border-radius:2px;overflow:hidden;}
+.rs-item{background:var(--ink);padding:1rem;text-align:center;}
+.rs-num{font-family:var(--serif);font-size:2rem;line-height:1;}
+.rs-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.4;margin-top:3px;}
+.rs-item.c .rs-num{color:#4aba80;}
+.rs-item.p .rs-num{color:var(--amber-bright);}
+.rs-item.n .rs-num{color:#e06060;}
+.action-list{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1.5rem;}
+.action-item{padding:1rem 1.25rem;border-radius:2px;display:flex;gap:0.9rem;align-items:flex-start;}
+.action-item.priority-high{background:rgba(176,48,48,0.15);border-left:3px solid #e06060;}
+.action-item.priority-med{background:rgba(184,122,8,0.12);border-left:3px solid var(--amber-bright);}
+.ai-badge{font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.5rem;border-radius:2px;flex-shrink:0;margin-top:3px;white-space:nowrap;}
+.action-item.priority-high .ai-badge{background:#e06060;color:var(--white);}
+.action-item.priority-med .ai-badge{background:var(--amber-bright);color:var(--ink);}
+.ai-text{font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.65;}
+.ai-text strong{color:var(--white);display:block;margin-bottom:2px;}
+.report-cta{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:3px;padding:1.5rem;text-align:center;}
+.rcta-text{font-size:0.83rem;color:rgba(255,255,255,0.5);margin-bottom:1rem;line-height:1.7;}
+.btn-amber-solid{background:var(--amber);color:var(--white);padding:0.72rem 1.6rem;font-weight:600;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s;margin:0.25rem;}
+.btn-amber-solid:hover{background:var(--amber-bright);}
+.btn-print{background:transparent;color:rgba(255,255,255,0.45);padding:0.72rem 1.6rem;font-weight:500;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.12);border-radius:2px;cursor:pointer;display:inline-block;transition:all 0.2s;margin:0.25rem;}
+.btn-print:hover{border-color:var(--amber-bright);color:var(--amber-bright);}
+.disclaimer{font-size:0.72rem;color:var(--ink-soft);line-height:1.7;padding:1rem 1.25rem;background:var(--sand-dark);border-radius:2px;margin-top:1rem;}
+
+@media print{nav,.tool-hero,.scope-card,.btn-primary,.btn-print,.report-cta,.disclaimer{display:none!important;}#dashboard,#report-section{display:block!important;}body{background:white;}}
+@media(max-width:660px){nav{padding:1rem 1.25rem;}.tool-hero,.tool-wrap{padding-left:1.25rem;padding-right:1.25rem;}.domain-status-btn{flex-wrap:wrap;}.score-bar-wrap{flex-direction:column;align-items:flex-start;}.report-summary{grid-template-columns:1fr 1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DamSafetyConsult<span>.in</span></div>
+    <div class="nav-tagline">Dam Safety Engineering · India</div>
+  </div>
+  <a href="tools.html" class="nav-back">← Back to Tools</a>
+</nav>
+
+<section class="tool-hero">
+  <div class="tool-hero-grid"></div>
+  <div class="tool-hero-bar"></div>
+  <div class="hero-inner">
+    <div class="tool-eyebrow">Interactive Tool · Free</div>
+    <h1 class="tool-title">DSA 2021<br><em>Compliance Navigator</em></h1>
+    <p class="tool-sub">An eight-domain clause-by-clause compliance check for dam owners and SDSOs — with plain-language explanation of what each provision requires, why it exists, and what non-compliance means. Generates a prioritised action report.</p>
+    <div class="tool-meta">
+      <span class="meta-tag">Dam Safety Act 2021</span>
+      <span class="meta-tag">DSA Rules 2023</span>
+      <span class="meta-tag">NDSA Regulations 2024</span>
+      <span class="meta-tag">Free · No Login</span>
+    </div>
+  </div>
+</section>
+
+<div class="tool-wrap">
+
+<!-- ══ LAYER 1: SCOPE ══ -->
+<div class="scope-card" id="scopeCard">
+  <div class="card-head">
+    <div class="card-step">1</div>
+    <div>
+      <div class="card-title">Is your dam a "Specified Dam"?</div>
+      <div class="card-subtitle">DSA 2021 applies only to specified dams — Section 2(x)</div>
+    </div>
+  </div>
+  <div class="scope-intro"><strong>Why this matters:</strong> The Dam Safety Act 2021 does not apply to all dams — only to "specified dams" as defined in Section 2(x). Answer the three questions below to determine whether your dam falls within scope. A dam that does not qualify has no statutory obligations under DSA 2021, though state-level regulations may still apply.</div>
+
+  <div class="q-block">
+    <div class="q-label">Q1. Is the dam height <strong>15 metres or more</strong>? <span class="q-ref">[Section 2(x)(i)]</span></div>
+    <div class="q-hint">Measured from the lowest portion of the general foundation area to the top of the dam.</div>
+    <div class="radio-row">
+      <div class="radio-btn" onclick="setAnswer('q1','yes',this)">Yes — ≥ 15 m</div>
+      <div class="radio-btn" onclick="setAnswer('q1','no',this)">No — below 15 m</div>
+    </div>
+  </div>
+
+  <div class="q-block" id="q2block" style="display:none;">
+    <div class="q-label">Q2. Is the dam height between <strong>10 and 15 metres</strong>? <span class="q-ref">[Section 2(x)(ii)]</span></div>
+    <div class="radio-row">
+      <div class="radio-btn" onclick="setAnswer('q2','yes',this)">Yes — 10 to 15 m</div>
+      <div class="radio-btn" onclick="setAnswer('q2','no',this)">No — below 10 m</div>
+    </div>
+  </div>
+
+  <div class="q-block" id="q3block" style="display:none;">
+    <div class="q-label">Q3. Does the dam satisfy <strong>at least one</strong> of these qualifying conditions? <span class="q-ref">[Section 2(x)(ii)(A–E)]</span></div>
+    <div class="q-hint">(A) Crest length ≥ 500 m &nbsp;|&nbsp; (B) Reservoir capacity ≥ 1 million m³ &nbsp;|&nbsp; (C) Max flood discharge ≥ 2,000 m³/s &nbsp;|&nbsp; (D) Specially difficult foundation &nbsp;|&nbsp; (E) Unusual design</div>
+    <div class="radio-row">
+      <div class="radio-btn" onclick="setAnswer('q3','yes',this)">Yes — at least one condition met</div>
+      <div class="radio-btn" onclick="setAnswer('q3','no',this)">No — none apply</div>
+    </div>
+  </div>
+
+  <div class="scope-result" id="scopeResult"></div>
+  <button class="btn-primary" id="proceedBtn" onclick="proceedToDashboard()" style="display:none;">Proceed to Compliance Check →</button>
+</div>
+
+<!-- ══ LAYER 2: DASHBOARD ══ -->
+<div id="dashboard">
+  <div class="dash-intro">Your dam is a <strong>specified dam under DSA 2021</strong>. The eight compliance domains below correspond to the Act's statutory obligations — now separated by subject for precise self-assessment. Mark each domain's current status. The tool generates a prioritised action report at the bottom.</div>
+
+  <div class="score-bar-wrap">
+    <div class="score-circle" id="scoreCircle">
+      <div class="score-num" id="scoreNum">–</div>
+      <div class="score-denom">/ 8</div>
+    </div>
+    <div class="score-info">
+      <div class="score-title">Compliance Score</div>
+      <div class="score-desc">Mark each domain as Compliant, Partial, or Non-compliant. Score updates in real time. &nbsp;Compliant = 1 pt · Partial = 0.5 pt · Non-compliant = 0 pt.</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="domain-grid">
+
+    <!-- GROUP A: INSTITUTIONAL -->
+    <div class="chapter-label">Chapter II &amp; Section 30 — Institutional Framework</div>
+
+    <div class="domain-card" id="d1">
+      <div class="domain-header" onclick="toggleDomain('d1')">
+        <div class="domain-num">01</div>
+        <div class="domain-info">
+          <div class="domain-name">Dam Safety Unit, DSO &amp; O&amp;M Panel</div>
+          <div class="domain-ref">Section 30 · DSA Rules 2023 · NDSA Advisory 2022</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d1','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d1','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d1','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">Most dam safety failures in India have occurred not because engineers didn't know what to do — but because no one was institutionally responsible for doing it. Gate malfunction at Machhu, deferred maintenance decisions at multiple sites — the common thread is diffused or absent accountability. Section 30 mandates a dedicated Dam Safety Unit so that safety is someone's primary job, not the third item on a Chief Engineer's agenda. The DSO appointment creates a named, qualified individual who is legally responsible.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li>Constitute a <strong>Dam Safety Unit (DSU)</strong> for every specified dam — Section 30</li>
+          <li>Appoint a qualified <strong>Dam Safety Officer (DSO)</strong> — must meet prescribed qualifications under DSA Rules</li>
+          <li>Constitute an <strong>O&amp;M Panel</strong> of experts covering structural, hydraulic, geotechnical, and electro-mechanical aspects</li>
+          <li>Designate clear roles, responsibilities, and reporting lines for dam safety management</li>
+          <li>DSU constitution and DSO appointment reported to SDSO and recorded on <strong>DHARMA portal</strong></li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Section 30</span><span class="clause-tag">DSA Rules 2023</span><span class="clause-tag">NDSA Advisory 2022</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. DSU constituted but DSO not yet formally appointed..."></textarea>
+      </div>
+    </div>
+
+    <!-- GROUP B: INSPECTIONS -->
+    <div class="chapter-label">Chapter IV — Dam Safety Measures &amp; Inspections</div>
+
+    <div class="domain-card" id="d2">
+      <div class="domain-header" onclick="toggleDomain('d2')">
+        <div class="domain-num">02</div>
+        <div class="domain-info">
+          <div class="domain-name">Mandatory Inspections — Pre &amp; Post Monsoon</div>
+          <div class="domain-ref">Chapter IV · NDSA Circular 1/2022 · TG-02/2022 · DHARMA</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d2','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d2','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d2','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">India's dam incident history shows that many failures were preceded by visible warning signs — seepage, cracking, gate malfunction — that were either not observed or not acted upon. The pre-monsoon inspection ensures the dam is structurally and operationally ready before maximum hydraulic loading. The post-monsoon inspection captures damage caused by the flood season before it advances unseen through winter. Both must be formally recorded and uploaded — undocumented inspections, even if conducted, provide no institutional protection and no regulatory audit trail.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li><strong>Pre-monsoon inspection</strong> completed by <strong>30th June</strong> each year — NDSA Circular 1/2022</li>
+          <li><strong>Post-monsoon inspection</strong> completed by <strong>30th November</strong> each year</li>
+          <li>Inspection using prescribed checklist — visual, structural, mechanical, instrumentation, reservoir preparedness</li>
+          <li>Inspection report submitted to <strong>SDSO within 15 days</strong> of inspection</li>
+          <li>Report uploaded to <strong>DHARMA portal</strong> — mandatory digital record</li>
+          <li><strong>Special inspections</strong> after extreme events — floods exceeding 70% of design flood, earthquakes, unusual observations</li>
+          <li>Any distress condition reported immediately to SDSO — no deferral permitted</li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Chapter IV DSA 2021</span><span class="clause-tag">NDSA Circular 1/2022</span><span class="clause-tag">TG-02/2022</span><span class="clause-tag">DHARMA Protocol</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. Pre-monsoon done, post-monsoon report not yet uploaded to DHARMA..."></textarea>
+      </div>
+    </div>
+
+    <!-- GROUP C: TECHNICAL REVIEWS — SEPARATED -->
+    <div class="chapter-label">Chapter III — Obligations of Dam Owners: Technical Reviews</div>
+
+    <div class="domain-card" id="d3">
+      <div class="domain-header" onclick="toggleDomain('d3')">
+        <div class="domain-num">03</div>
+        <div class="domain-info">
+          <div class="domain-name">Inflow Design Flood (IDF) Review</div>
+          <div class="domain-ref">Section 13 · IS 11223:1985 · CWC IDF Guidelines</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d3','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d3','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d3','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">A dam may look structurally sound yet be hydraulically unsafe — because the Inflow Design Flood it was designed for is now inadequate given updated PMF estimates, changed catchment conditions, or climate-driven shifts in extreme rainfall. Many dams in India were designed to older CWC standards where PMF estimates were significantly lower than what updated hydrometeorological analysis now yields — particularly in Himalayan catchments. An inadequate spillway that cannot pass the PMF is an overtopping risk regardless of structural condition. The IDF review is the mechanism to detect and address this hidden risk before a major flood event exposes it.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li>Review IDF against current <strong>Probable Maximum Flood (PMF)</strong> estimates — Section 13</li>
+          <li>High-hazard dams: review every <strong>5–10 years</strong> or after a major flood event</li>
+          <li>Medium-hazard dams: every <strong>10–15 years</strong> or after significant watershed changes</li>
+          <li>Review must account for updated CWC hydrometeorological data, changed land use, and climate trends</li>
+          <li>Spillway adequacy assessed against current IDF — freeboard check, gate capacity, energy dissipation</li>
+          <li>IDF review report submitted to SDSO; uploaded to <strong>DHARMA portal</strong></li>
+          <li>Where IDF deficiency is identified — remediation pathway under ALARP framework with NDSA/SDSO</li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Section 13 DSA 2021</span><span class="clause-tag">IS 11223:1985</span><span class="clause-tag">CWC IDF Guidelines</span><span class="clause-tag">CWC HM Atlas</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. IDF review last done in 2010 based on older CWC data. PMF not computed..."></textarea>
+      </div>
+    </div>
+
+    <div class="domain-card" id="d4">
+      <div class="domain-header" onclick="toggleDomain('d4')">
+        <div class="domain-num">04</div>
+        <div class="domain-info">
+          <div class="domain-name">Seismic Hazard Assessment</div>
+          <div class="domain-ref">Section 14 · IS 1893 · BIS Seismic Zone Map</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d4','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d4','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d4','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">Many existing dams in India were designed using seismic coefficients that are now demonstrably inadequate — because they predate the current IS 1893 seismic zone map, or were designed to Zone II standards in areas now reclassified as Zone IV or V. An embankment dam in a high seismic zone, designed without proper dynamic analysis, carries a liquefaction or slope stability risk under Maximum Credible Earthquake loading that no annual inspection can detect. The seismic hazard assessment is the one technical review that can only be done analytically — the risk is invisible until the earthquake arrives. Reservoir-Induced Seismicity (RIS) adds a further dimension for large reservoirs.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li>Conduct <strong>seismic hazard assessment</strong> against Maximum Credible Earthquake (MCE) for the dam's region — Section 14</li>
+          <li>Seismotectonic study — identify active fault zones, historical seismicity, ground motion parameters</li>
+          <li>Structural response analysis — dynamic analysis of dam body under seismic loading (FEA where warranted)</li>
+          <li>Assessment of <strong>Reservoir-Induced Seismicity (RIS)</strong> for large reservoirs</li>
+          <li>Accelerographs / strong motion sensors installed and functional at dam site</li>
+          <li>High-hazard dams: assessment every <strong>5–10 years</strong> or after major seismic event (≥ Operational Basis Earthquake level)</li>
+          <li>Report submitted to SDSO; uploaded to DHARMA</li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Section 14 DSA 2021</span><span class="clause-tag">IS 1893</span><span class="clause-tag">OBE / SEE Framework</span><span class="clause-tag">PSHA/DSHA</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. Original design based on Zone II. Dam now in Zone IV. No seismic review done..."></textarea>
+      </div>
+    </div>
+
+    <div class="domain-card" id="d5">
+      <div class="domain-header" onclick="toggleDomain('d5')">
+        <div class="domain-num">05</div>
+        <div class="domain-info">
+          <div class="domain-name">Instrumentation — Installation &amp; Monitoring</div>
+          <div class="domain-ref">Section 15 · NDSA Technical Guidelines · IS Codes</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d5','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d5','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d5','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">A dam without functioning instrumentation is operating blind. Seepage developing in the foundation, pore pressure building in the embankment, slow settlement or lateral displacement — these distress conditions develop invisibly and reveal themselves visually only when they are already at an advanced and often irreversible stage. Instrumentation is the early warning system for the dam's internal health. The particular challenge for existing dams is that many critical instruments — piezometers, strain gauges — were either never installed, or have degraded beyond use, and physical retrofitting into the core or foundation is now impossible. This makes a functioning surface and gallery instrumentation system even more critical.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li>Install and maintain <strong>appropriate instrumentation</strong> for the dam type and hazard level — Section 15</li>
+          <li>Minimum: piezometers (uplift, pore pressure), seepage measurement (V-notch weirs), settlement gauges, inclinometers where applicable</li>
+          <li>For high-hazard dams: accelerographs / strong motion sensors mandatory</li>
+          <li>Instrumentation data recorded at <strong>prescribed frequency</strong>; reviewed by DSO and O&amp;M Panel</li>
+          <li>Trend analysis — patterns correlated with reservoir level, rainfall, and seismic events</li>
+          <li>Action levels (alert/alarm/emergency thresholds) defined and <strong>integrated with EAP</strong></li>
+          <li>Non-functional instruments identified, reported, and replacement planned</li>
+          <li>Data uploaded to <strong>DHARMA portal</strong> as part of inspection records</li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Section 15 DSA 2021</span><span class="clause-tag">NDSA TG-02/2022</span><span class="clause-tag">Piezometers</span><span class="clause-tag">Seepage Weirs</span><span class="clause-tag">Accelerographs</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. Piezometers installed but not read since 2018. Seepage weir sedimented..."></textarea>
+      </div>
+    </div>
+
+    <!-- GROUP D: CDSE -->
+    <div class="chapter-label">Chapter IV — Comprehensive Safety Evaluation</div>
+
+    <div class="domain-card" id="d6">
+      <div class="domain-header" onclick="toggleDomain('d6')">
+        <div class="domain-num">06</div>
+        <div class="domain-info">
+          <div class="domain-name">Comprehensive Dam Safety Evaluation (CDSE)</div>
+          <div class="domain-ref">NDSA Regulation 12/2022 · Every 5 Years · External Panel</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d6','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d6','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d6','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">Annual inspections catch visible deterioration. The CDSE catches what annual inspections miss — systematic structural deficiencies, design-standard inadequacies, failure mode vulnerabilities, and cumulative drift from safe operating parameters that develops slowly over years. The 5-year cycle is modelled on international dam safety practice (USSD, ANCOLD, ICOLD) where periodic comprehensive review by an independent expert panel has consistently identified dam safety risks that in-house inspections did not. For dams built before 1980 — designed to standards that predate modern PMF methods, seismic codes, and geotechnical understanding — the CDSE often reveals the most significant safety concerns.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li><strong>CDSE every 5 years</strong> for all specified dams — NDSA Regulation 12/2022; also triggered after extreme events</li>
+          <li>Covers: structural stability, hydraulic adequacy, geotechnical performance, instrumentation adequacy, seismic vulnerability, EAP effectiveness</li>
+          <li><strong>External expert panel</strong> mandatory for large/high-hazard dams — Regulation 13/2022</li>
+          <li>CDSE report submitted to NDSA and SDSO; uploaded to DHARMA within <strong>30 days of completion</strong></li>
+          <li>Recommendations implemented within <strong>12 months</strong>; SDSO and NDSA monitor progress</li>
+          <li>Non-compliance can result in suspension of dam operations under Section 38</li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">NDSA Reg. 12/2022</span><span class="clause-tag">NDSA Reg. 13/2022</span><span class="clause-tag">NDSA Reg. 14/2022</span><span class="clause-tag">Section 38 DSA 2021</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. Last CDSE in 2019 — overdue. External panel not yet commissioned..."></textarea>
+      </div>
+    </div>
+
+    <!-- GROUP E: EAP -->
+    <div class="chapter-label">Chapter V — Emergency Action Plan &amp; Risk Reduction</div>
+
+    <div class="domain-card" id="d7">
+      <div class="domain-header" onclick="toggleDomain('d7')">
+        <div class="domain-num">07</div>
+        <div class="domain-info">
+          <div class="domain-name">Emergency Action Plan (EAP)</div>
+          <div class="domain-ref">Section 26 · NDSA Reg. 8–11/2022 · NDSA Hazard Classification 2024</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d7','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d7','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d7','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">The 1979 Machhu Dam disaster killed an estimated 10,000–25,000 people — not primarily because the dam failed, but because there was no warning system, no evacuation plan, and no downstream authority knew a disaster was imminent until the flood wave arrived. The EAP mandate exists to ensure that the consequences of dam failure, when it does occur, are managed through pre-planned and tested response rather than improvised chaos. An EAP is not a document — it is a rehearsed system that must function under the worst possible conditions, often in the dark, during a flood, with communication systems partially down.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li><strong>Hazard class determination</strong> — PCI-based H1–H6 classification under NDSA Hazard &amp; Vulnerability Classification Regulations 2024</li>
+          <li><strong>Dam break analysis</strong> — breach parameter estimation, peak outflow, flood routing, inundation mapping</li>
+          <li><strong>EAP document</strong> — inundation maps, notification flowcharts, evacuation zones, roles &amp; responsibilities, emergency communication — Regulation 8/2022</li>
+          <li><strong>SDSO approval</strong> of EAP — Regulation 9/2022</li>
+          <li><strong>Annual mock drill</strong> — tabletop exercise or field drill; results uploaded to DHARMA</li>
+          <li><strong>Community awareness</strong> programme — signage, local-language alerts, sensitisation — Regulation 10/2022</li>
+          <li>EAP updated every <strong>5 years</strong> or after major changes, incidents, or downstream population changes</li>
+          <li>Integration with <strong>District Disaster Management Plan (DDMP)</strong></li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Section 26 DSA 2021</span><span class="clause-tag">NDSA Reg. 8–11/2022</span><span class="clause-tag">NDSA Hazard Classification 2024</span><span class="clause-tag">DDMP</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. EAP prepared in 2020 but inundation maps not updated. Mock drill not done this year..."></textarea>
+      </div>
+    </div>
+
+    <!-- GROUP F: DOCUMENTATION -->
+    <div class="chapter-label">Chapter VII — Documentation, O&amp;M &amp; DHARMA Compliance</div>
+
+    <div class="domain-card" id="d8">
+      <div class="domain-header" onclick="toggleDomain('d8')">
+        <div class="domain-num">08</div>
+        <div class="domain-info">
+          <div class="domain-name">Documentation, O&amp;M Manual &amp; DHARMA Portal</div>
+          <div class="domain-ref">Section 2(j), 2(r), 2(g) · NDSA Reg. 14/2022 · DHARMA</div>
+        </div>
+        <div class="domain-status-btn">
+          <div class="status-pill" onclick="setStatus(event,'d8','c')">✓ Compliant</div>
+          <div class="status-pill" onclick="setStatus(event,'d8','p')">~ Partial</div>
+          <div class="status-pill" onclick="setStatus(event,'d8','n')">✗ Non-compliant</div>
+        </div>
+        <div class="domain-chevron">▼</div>
+      </div>
+      <div class="domain-body">
+        <div class="why-box">
+          <div class="why-label">Why this clause exists</div>
+          <div class="why-text">When NDSA inspectors arrive at a dam site and ask for the original design memorandum, the as-built drawings, the geological investigation report, or the gate operation history — and these documents don't exist, or can't be located, or were lost in an office transfer — the dam owner is both legally exposed and operationally blind. Documentation is the institutional memory of a dam. Without it, every safety review and every emergency decision starts from zero. The DHARMA mandate converts this institutional memory into a national digital database — so that no dam's safety history is lost when personnel change or physical records are destroyed.</div>
+        </div>
+        <div class="req-label">What the law requires</div>
+        <ul class="req-list">
+          <li><strong>O&amp;M Manual</strong> — written procedures for normal operations, gate operations, and emergency response — Section 2(r)</li>
+          <li><strong>Log Books</strong> — day-to-day records of operations, observations, maintenance, and incidents</li>
+          <li><strong>Documentation file</strong> — design memorandum, as-built drawings, geological reports, quality control records, inspection history, CDSE reports — Section 2(j)</li>
+          <li>Dam registered and active on <strong>DHARMA portal</strong> — inspection questionnaire current; all required reports uploaded within prescribed timelines</li>
+          <li><strong>Incident reporting</strong> — any dam incident as defined under Section 2(g) reported to SDSO immediately; no unreported incidents</li>
+          <li>Records of all alterations, enlargements, or repairs that may affect dam safety — Section 2(k)</li>
+        </ul>
+        <div class="clause-tags"><span class="clause-tag">Section 2(j)</span><span class="clause-tag">Section 2(r)</span><span class="clause-tag">Section 2(g)</span><span class="clause-tag">DHARMA Portal</span><span class="clause-tag">NDSA Reg. 14/2022</span></div>
+        <div class="notes-label">Notes / observations:</div>
+        <textarea class="notes-field" placeholder="e.g. O&M manual exists but last updated 2008. DHARMA registration done but reports not uploaded..."></textarea>
+      </div>
+    </div>
+
+  </div><!-- end domain-grid -->
+  <button class="btn-primary" onclick="generateReport()">Generate Action Report →</button>
+</div>
+
+<!-- ══ LAYER 3: REPORT ══ -->
+<div id="report-section">
+  <div class="report-card">
+    <div class="report-title">DSA 2021 Compliance — Action Report</div>
+    <div class="report-sub" id="report-date"></div>
+    <div class="report-summary">
+      <div class="rs-item c"><div class="rs-num" id="r-compliant">0</div><div class="rs-label">Compliant</div></div>
+      <div class="rs-item p"><div class="rs-num" id="r-partial">0</div><div class="rs-label">Partial</div></div>
+      <div class="rs-item n"><div class="rs-num" id="r-non">0</div><div class="rs-label">Non-compliant</div></div>
+    </div>
+    <div class="action-list" id="actionList"></div>
+    <div class="report-cta">
+      <div class="rcta-text">This report identifies specific compliance gaps under DSA 2021. Addressing non-compliances is both a statutory obligation and a matter of downstream public safety. Professional support is available for every gap identified above — from CDSE preparation to IDF review, EAP preparation, instrumentation assessment, and seismic hazard evaluation.</div>
+      <a href="contact.html" class="btn-amber-solid">Discuss These Gaps →</a>
+      <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>
+  <div class="disclaimer"><strong>Disclaimer:</strong> This tool is for self-assessment and awareness purposes only. It does not constitute a legal compliance audit or a formal dam safety evaluation. Actual compliance requirements depend on site-specific conditions, dam classification, and regulatory interpretations current at time of assessment. Dam owners should engage qualified professionals for formal compliance determination. — Er. Rakesh Gaurana, DamSafetyConsult.in</div>
+</div>
+
+</div><!-- tool-wrap -->
+
+<script>
+const answers={};
+const statuses={};
+const TOTAL=8;
+
+const domainMeta={
+  d1:{name:'Dam Safety Unit, DSO & O&M Panel',priority:'high',
+      action:'Formally constitute the Dam Safety Unit (DSU). Appoint a qualified Dam Safety Officer (DSO) meeting the prescribed qualifications under DSA Rules 2023. Form the O&M Panel covering structural, hydraulic, geotechnical, and electromechanical disciplines. Report constitution to SDSO and record on DHARMA portal. This is a prerequisite for most other compliance activities.'},
+  d2:{name:'Mandatory Inspections — Pre & Post Monsoon',priority:'high',
+      action:'Conduct pre-monsoon inspection by 30 June and post-monsoon inspection by 30 November each year. Use the NDSA prescribed checklist. Submit inspection report to SDSO within 15 days and upload to DHARMA portal. Schedule any overdue special inspections after recent extreme events.'},
+  d3:{name:'Inflow Design Flood (IDF) Review',priority:'high',
+      action:'Commission IDF review against current PMF estimates using updated CWC hydrometeorological data. Assess spillway adequacy against current IDF — freeboard, gate capacity, and energy dissipation. Where IDF deficiency is identified, develop a remediation pathway under the ALARP framework and place on record with SDSO/NDSA.'},
+  d4:{name:'Seismic Hazard Assessment',priority:'high',
+      action:'Commission seismic hazard assessment covering seismotectonic study, active fault identification, and structural response analysis against Maximum Credible Earthquake. Verify seismic zone classification is current. Install or restore accelerograph/strong motion sensor at dam site. Submit report to SDSO and DHARMA.'},
+  d5:{name:'Instrumentation — Installation & Monitoring',priority:'high',
+      action:'Audit current instrumentation — identify non-functional or missing instruments. Restore or install piezometers, seepage weirs, settlement gauges, and inclinometers as appropriate for dam type and hazard level. Establish regular reading schedule. Define action thresholds linked to EAP. Upload readings to DHARMA.'},
+  d6:{name:'Comprehensive Dam Safety Evaluation (CDSE)',priority:'med',
+      action:'Commission CDSE from qualified dam safety engineers covering structural, hydraulic, geotechnical, seismic, instrumentation, and EAP aspects. Constitute external expert panel for high-hazard or large dams. Submit completed report to NDSA and SDSO; upload to DHARMA within 30 days. Implement recommendations within 12 months.'},
+  d7:{name:'Emergency Action Plan (EAP)',priority:'high',
+      action:'Determine hazard class under NDSA 2024 PCI-based H1–H6 system. Commission dam break analysis and inundation mapping. Prepare EAP to NDSA template covering notification flowcharts, evacuation zones, roles and responsibilities, and communication system. Obtain SDSO approval. Conduct annual mock drill. Integrate with District DMP. Update every 5 years.'},
+  d8:{name:'Documentation, O&M Manual & DHARMA Portal',priority:'med',
+      action:'Compile complete documentation file — design memorandum, as-built drawings, geological reports, quality control records, and inspection history. Update O&M Manual to current operating conditions. Ensure dam is registered and current on DHARMA portal with all required reports uploaded. Establish log book discipline. Report any unrecorded incidents to SDSO.'},
+};
+
+function setAnswer(q,val,el){
+  answers[q]=val;
+  el.parentElement.querySelectorAll('.radio-btn').forEach(b=>b.classList.remove('selected-yes','selected-no'));
+  el.classList.add(val==='yes'?'selected-yes':'selected-no');
+  evaluateScope();
+}
+
+function evaluateScope(){
+  const q1=answers['q1'],q2=answers['q2'],q3=answers['q3'];
+  const res=document.getElementById('scopeResult');
+  const btn=document.getElementById('proceedBtn');
+  const q2b=document.getElementById('q2block');
+  const q3b=document.getElementById('q3block');
+  if(q1==='yes'){
+    q2b.style.display='none';q3b.style.display='none';
+    res.style.display='block';res.className='scope-result in-scope';
+    res.innerHTML='<strong>✓ Specified Dam — DSA 2021 Applies</strong>Your dam qualifies under Section 2(x)(i) — height ≥ 15 m. All eight compliance domains apply. Proceed to the compliance check.';
+    btn.style.display='inline-block';
+  } else if(q1==='no'){
+    q2b.style.display='block';
+    if(q2==='yes'){
+      q3b.style.display='block';
+      if(q3==='yes'){
+        res.style.display='block';res.className='scope-result in-scope';
+        res.innerHTML='<strong>✓ Specified Dam — DSA 2021 Applies</strong>Your dam qualifies under Section 2(x)(ii) — height 10–15 m with at least one qualifying condition. All eight compliance domains apply. Proceed to the compliance check.';
+        btn.style.display='inline-block';
+      } else if(q3==='no'){
+        res.style.display='block';res.className='scope-result out-scope';
+        res.innerHTML='<strong>✗ Not a Specified Dam under DSA 2021</strong>Your dam is 10–15 m in height but does not satisfy any of the qualifying conditions under Section 2(x)(ii)(A–E). DSA 2021 does not apply. State-level dam safety regulations may still apply — check with your State Dam Safety Organisation.';
+        btn.style.display='none';
+      } else {res.style.display='none';btn.style.display='none';}
+    } else if(q2==='no'){
+      q3b.style.display='none';
+      res.style.display='block';res.className='scope-result out-scope';
+      res.innerHTML='<strong>✗ Not a Specified Dam under DSA 2021</strong>Your dam is below 10 m in height and does not qualify as a specified dam under Section 2(x). DSA 2021 does not apply. State-level regulations may still apply.';
+      btn.style.display='none';
+    } else {res.style.display='none';btn.style.display='none';}
+  }
+}
+
+function proceedToDashboard(){
+  document.getElementById('scopeCard').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleDomain(id){
+  document.getElementById(id).classList.toggle('open');
+}
+
+function setStatus(e,id,status){
+  e.stopPropagation();
+  statuses[id]=status;
+  const card=document.getElementById(id);
+  card.className='domain-card';
+  if(status==='c') card.classList.add('status-compliant');
+  else if(status==='p') card.classList.add('status-partial');
+  else card.classList.add('status-non');
+  card.querySelectorAll('.status-pill').forEach(p=>p.classList.remove('active-c','active-p','active-n'));
+  const pills=card.querySelectorAll('.status-pill');
+  if(status==='c') pills[0].classList.add('active-c');
+  else if(status==='p') pills[1].classList.add('active-p');
+  else pills[2].classList.add('active-n');
+  updateScore();
+}
+
+function updateScore(){
+  let score=0;
+  Object.values(statuses).forEach(s=>{if(s==='c')score+=1;else if(s==='p')score+=0.5;});
+  const pct=Math.round((score/TOTAL)*100);
+  const display=score%1===0?score:score.toFixed(1);
+  document.getElementById('scoreNum').textContent=display;
+  const fill=document.getElementById('progressFill');
+  fill.style.width=pct+'%';
+  fill.style.background=pct>=75?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+  const circle=document.getElementById('scoreCircle');
+  circle.style.borderColor=pct>=75?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+}
+
+function generateReport(){
+  let c=0,p=0,n=0;
+  const actions=[];
+  ['d1','d2','d3','d4','d5','d6','d7','d8'].forEach(id=>{
+    const s=statuses[id]||'n';
+    if(s==='c')c++;
+    else if(s==='p'){p++;actions.push({id,s:'p',meta:domainMeta[id]});}
+    else{n++;actions.push({id,s:'n',meta:domainMeta[id]});}
+  });
+  document.getElementById('r-compliant').textContent=c;
+  document.getElementById('r-partial').textContent=p;
+  document.getElementById('r-non').textContent=n;
+  document.getElementById('report-date').textContent='Generated: '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+' · DamSafetyConsult.in';
+  const list=document.getElementById('actionList');
+  if(actions.length===0){
+    list.innerHTML='<div style="padding:1.25rem;background:rgba(26,122,74,0.1);border-left:3px solid #4aba80;border-radius:2px;font-size:0.88rem;color:rgba(255,255,255,0.8);">✓ All eight compliance domains are marked Compliant. Maintain current practices and ensure timely renewal of time-bound obligations — CDSE every 5 years, EAP review every 5 years, IDF review as per hazard class schedule, and annual inspections.</div>';
+  } else {
+    actions.sort((a,b)=>{
+      if(a.s!==b.s) return a.s==='n'?-1:1;
+      return 0;
+    });
+    list.innerHTML=actions.map(a=>{
+      const cls=a.s==='n'?'priority-high':'priority-med';
+      const badge=a.s==='n'?'Non-compliant':'Partial';
+      return `<div class="action-item ${cls}"><div class="ai-badge">${badge}</div><div class="ai-text"><strong>${a.meta.name}</strong>${a.meta.action}</div></div>`;
+    }).join('');
+  }
+  const rs=document.getElementById('report-section');
+  rs.style.display='block';
+  rs.scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
