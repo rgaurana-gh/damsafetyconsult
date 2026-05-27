@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dam Category Finder | DamSafetyConsult.in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0f1c2e;--ink-mid:#1e3554;--ink-soft:#4e6a87;
+  --sand:#f6f1e9;--sand-dark:#eae3d6;
+  --amber:#b87a08;--amber-bright:#e8a020;--amber-pale:#fdf3de;
+  --white:#ffffff;
+  --green:#1a7a4a;--green-pale:#e8f5ee;
+  --red:#b03030;--red-pale:#fdeaea;
+  --blue:#1a4a7a;--blue-pale:#e8f0f8;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);overflow-x:hidden;font-size:15px;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(12,22,38,0.97);border-bottom:1px solid rgba(232,160,32,0.12);}
+.nav-brand{display:flex;flex-direction:column;line-height:1;}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--white);}
+.nav-logo span{color:var(--amber-bright);}
+.nav-tagline{font-size:0.6rem;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.nav-back{font-size:0.75rem;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.nav-back:hover{color:var(--amber-bright);}
+
+.tool-hero{background:var(--ink);padding:7rem 3rem 3.5rem;position:relative;overflow:hidden;}
+.tool-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,122,8,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,122,8,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.tool-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--amber) 30%,var(--amber-bright) 70%,transparent);}
+.hero-inner{position:relative;max-width:780px;}
+.tool-eyebrow{font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber-bright);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem;}
+.tool-eyebrow::after{content:'';display:inline-block;width:36px;height:1px;background:var(--amber);opacity:0.5;}
+.tool-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.8rem);color:var(--white);line-height:1.05;margin-bottom:0.75rem;}
+.tool-title em{color:var(--amber-bright);font-style:italic;}
+.tool-sub{font-size:0.92rem;color:rgba(255,255,255,0.5);line-height:1.85;max-width:580px;margin-bottom:1.5rem;}
+.tool-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+.meta-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;color:rgba(255,255,255,0.4);}
+
+.tool-wrap{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem 5rem;}
+
+/* INPUT FORM */
+.finder-card{background:var(--white);border:1.5px solid var(--sand-dark);border-radius:4px;padding:2rem;margin-bottom:1.5rem;}
+.card-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.card-step{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--white);font-family:var(--serif);font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card-title{font-family:var(--serif);font-size:1.25rem;color:var(--ink);}
+.card-subtitle{font-size:0.78rem;color:var(--ink-soft);margin-top:0.1rem;}
+
+.form-note{font-size:0.82rem;color:var(--ink-soft);line-height:1.8;padding:0.9rem 1.1rem;background:var(--amber-pale);border-left:3px solid var(--amber);border-radius:2px;margin-bottom:1.75rem;}
+.form-note strong{color:var(--ink);}
+
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 2rem;margin-bottom:1.5rem;}
+.input-group{display:flex;flex-direction:column;gap:0.35rem;}
+.input-group.full{grid-column:1/-1;}
+.inp-label{font-size:0.75rem;font-weight:600;color:var(--ink);letter-spacing:0.03em;}
+.inp-ref{font-size:0.65rem;color:var(--ink-soft);font-style:italic;font-weight:400;margin-left:0.4rem;}
+.inp-hint{font-size:0.7rem;color:var(--ink-soft);margin-top:0.1rem;line-height:1.5;}
+.inp{
+  padding:0.6rem 0.9rem;border:1.5px solid var(--sand-dark);border-radius:2px;
+  font-family:var(--sans);font-size:0.88rem;color:var(--ink);background:var(--sand);
+  transition:border-color 0.2s;width:100%;
+}
+.inp:focus{outline:none;border-color:var(--amber);}
+.inp.filled{border-color:var(--amber-bright);}
+
+/* Radio groups */
+.radio-group{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.1rem;}
+.radio-opt{
+  display:flex;align-items:flex-start;gap:0.6rem;
+  padding:0.55rem 0.8rem;border:1.5px solid var(--sand-dark);border-radius:2px;
+  cursor:pointer;transition:all 0.15s;background:var(--sand);
+}
+.radio-opt:hover{border-color:var(--amber);}
+.radio-opt.selected{border-color:var(--amber-bright);background:var(--amber-pale);}
+.radio-opt input[type=radio]{margin-top:3px;accent-color:var(--amber);flex-shrink:0;}
+.radio-opt-label{font-size:0.82rem;color:var(--ink);line-height:1.5;}
+.radio-opt-sub{font-size:0.72rem;color:var(--ink-soft);display:block;margin-top:1px;}
+
+/* Checkbox group */
+.check-group{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.1rem;}
+.check-opt{
+  display:flex;align-items:flex-start;gap:0.6rem;
+  padding:0.5rem 0.8rem;border:1.5px solid var(--sand-dark);border-radius:2px;
+  cursor:pointer;transition:all 0.15s;background:var(--sand);
+}
+.check-opt:hover{border-color:var(--amber);}
+.check-opt.selected{border-color:var(--amber-bright);background:var(--amber-pale);}
+.check-opt input[type=checkbox]{margin-top:3px;accent-color:var(--amber);flex-shrink:0;}
+.check-opt-label{font-size:0.82rem;color:var(--ink);line-height:1.5;}
+
+.btn-find{
+  background:var(--amber);color:var(--white);
+  padding:0.85rem 2.25rem;font-weight:600;font-size:0.88rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:none;border-radius:2px;cursor:pointer;
+  transition:background 0.2s;width:100%;margin-top:0.5rem;
+}
+.btn-find:hover{background:var(--amber-bright);}
+.btn-reset{
+  background:transparent;color:var(--ink-soft);
+  padding:0.6rem 1.5rem;font-size:0.78rem;letter-spacing:0.05em;
+  text-transform:uppercase;border:1px solid var(--sand-dark);
+  border-radius:2px;cursor:pointer;transition:all 0.2s;
+  width:100%;margin-top:0.5rem;
+}
+.btn-reset:hover{border-color:var(--ink-soft);color:var(--ink);}
+
+/* RESULT */
+#result{display:none;margin-top:1.5rem;}
+
+.result-card{border-radius:4px;overflow:hidden;margin-bottom:1.5rem;}
+.result-header{padding:2rem;display:flex;align-items:flex-start;gap:1.5rem;}
+.result-icon{font-size:2.5rem;flex-shrink:0;line-height:1;}
+.result-head-text{}
+.result-verdict{font-family:var(--serif);font-size:1.8rem;line-height:1.1;margin-bottom:0.3rem;}
+.result-sub{font-size:0.85rem;opacity:0.8;line-height:1.6;}
+
+.result-card.specified .result-header{background:var(--ink-mid);}
+.result-card.specified .result-verdict{color:var(--white);}
+.result-card.specified .result-sub{color:rgba(255,255,255,0.65);}
+
+.result-card.not-specified .result-header{background:var(--sand-dark);}
+.result-card.not-specified .result-verdict{color:var(--ink);}
+.result-card.not-specified .result-sub{color:var(--ink-soft);}
+
+.result-body{background:var(--white);border:1.5px solid var(--sand-dark);border-top:none;padding:1.75rem;}
+
+/* Trigger explanation */
+.trigger-box{margin-bottom:1.5rem;}
+.trigger-label{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.6rem;}
+.trigger-item{
+  display:flex;align-items:flex-start;gap:0.75rem;
+  padding:0.7rem 1rem;border-radius:2px;margin-bottom:0.4rem;
+  font-size:0.83rem;line-height:1.6;
+}
+.trigger-item.met{background:var(--green-pale);color:var(--green);}
+.trigger-item.not-met{background:var(--sand);color:var(--ink-soft);}
+.trigger-item.primary-met{background:#e8f0f8;color:var(--blue);}
+.trigger-icon{font-size:0.9rem;flex-shrink:0;margin-top:2px;}
+
+/* Obligations summary */
+.obligations{margin-bottom:1.5rem;}
+.obl-title{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--sand-dark);}
+.obl-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+.obl-item{
+  display:flex;align-items:flex-start;gap:0.5rem;
+  font-size:0.78rem;color:var(--ink-soft);line-height:1.5;
+  padding:0.5rem 0.75rem;background:var(--sand);border-radius:2px;
+}
+.obl-item::before{content:'→';color:var(--amber);flex-shrink:0;font-size:0.7rem;margin-top:2px;}
+
+/* Hazard classification guidance */
+.hazard-box{padding:1.25rem 1.5rem;border-radius:2px;margin-bottom:1.5rem;}
+.hazard-box.high{background:var(--red-pale);border-left:3px solid var(--red);}
+.hazard-box.significant{background:#fff8e6;border-left:3px solid var(--amber-bright);}
+.hazard-box.low{background:var(--green-pale);border-left:3px solid var(--green);}
+.hazard-box.unknown{background:var(--blue-pale);border-left:3px solid var(--blue);}
+.hz-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.3rem;}
+.hazard-box.high .hz-label{color:var(--red);}
+.hazard-box.significant .hz-label{color:var(--amber);}
+.hazard-box.low .hz-label{color:var(--green);}
+.hazard-box.unknown .hz-label{color:var(--blue);}
+.hz-text{font-size:0.82rem;line-height:1.7;color:var(--ink);}
+
+/* IDF guidance */
+.idf-box{padding:1.25rem 1.5rem;background:var(--amber-pale);border-left:3px solid var(--amber);border-radius:2px;margin-bottom:1.5rem;}
+.idf-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.3rem;}
+.idf-text{font-size:0.82rem;line-height:1.7;color:var(--ink);}
+
+/* Jurisdiction */
+.juris-box{padding:1.25rem 1.5rem;background:var(--sand);border:1px solid var(--sand-dark);border-radius:2px;margin-bottom:1.5rem;}
+.juris-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:0.5rem;}
+.juris-row{display:flex;align-items:center;gap:0.75rem;font-size:0.83rem;color:var(--ink);margin-bottom:0.3rem;}
+.juris-row:last-child{margin-bottom:0;}
+.juris-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.juris-dot.ndsa{background:var(--ink-mid);}
+.juris-dot.sdso{background:var(--amber);}
+
+/* Not specified result */
+.not-spec-box{padding:1.25rem 1.5rem;background:var(--sand);border-left:3px solid var(--sand-dark);border-radius:2px;margin-bottom:1rem;font-size:0.85rem;color:var(--ink-soft);line-height:1.75;}
+.not-spec-box strong{color:var(--ink);display:block;margin-bottom:0.3rem;}
+
+/* CTA */
+.result-cta{background:var(--ink);padding:1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+.rcta-text{font-size:0.83rem;color:rgba(255,255,255,0.55);line-height:1.6;max-width:440px;}
+.btn-cta{background:var(--amber);color:var(--white);padding:0.7rem 1.5rem;font-weight:600;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border-radius:2px;white-space:nowrap;transition:background 0.2s;}
+.btn-cta:hover{background:var(--amber-bright);}
+
+/* Reference table */
+.ref-section{background:var(--white);border:1.5px solid var(--sand-dark);border-radius:4px;padding:1.75rem;margin-top:1.5rem;}
+.ref-title{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:1rem;}
+.ref-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+.ref-table th{text-align:left;padding:0.5rem 0.75rem;background:var(--sand-dark);color:var(--ink-soft);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.ref-table td{padding:0.6rem 0.75rem;border-bottom:1px solid var(--sand-dark);color:var(--ink-soft);line-height:1.5;vertical-align:top;}
+.ref-table tr:last-child td{border-bottom:none;}
+.ref-table td:first-child{color:var(--ink);font-weight:500;}
+
+.disclaimer{font-size:0.72rem;color:var(--ink-soft);line-height:1.7;padding:1rem 1.25rem;background:var(--sand-dark);border-radius:2px;margin-top:1.5rem;}
+
+@media(max-width:640px){
+  nav{padding:1rem 1.25rem;}
+  .tool-hero,.tool-wrap{padding-left:1.25rem;padding-right:1.25rem;}
+  .input-grid{grid-template-columns:1fr;}
+  .input-group.full{grid-column:1;}
+  .obl-grid{grid-template-columns:1fr;}
+  .result-cta{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DamSafetyConsult<span>.in</span></div>
+    <div class="nav-tagline">Dam Safety Engineering · India</div>
+  </div>
+  <a href="tools.html" class="nav-back">← Back to Tools</a>
+</nav>
+
+<section class="tool-hero">
+  <div class="tool-hero-grid"></div>
+  <div class="tool-hero-bar"></div>
+  <div class="hero-inner">
+    <div class="tool-eyebrow">Interactive Tool · Free</div>
+    <h1 class="tool-title">Dam <em>Category</em><br>Finder</h1>
+    <p class="tool-sub">Determine whether your dam qualifies as a "specified dam" under the Dam Safety Act 2021, its hazard potential classification, indicative IDF standard, and regulatory jurisdiction — in under two minutes.</p>
+    <div class="tool-meta">
+      <span class="meta-tag">DSA 2021 · Section 2(x)</span>
+      <span class="meta-tag">IS 11223:1985</span>
+      <span class="meta-tag">NDSA Hazard Classification 2024</span>
+      <span class="meta-tag">Free · No Login</span>
+    </div>
+  </div>
+</section>
+
+<div class="tool-wrap">
+
+  <div class="finder-card">
+    <div class="card-head">
+      <div class="card-step">▲</div>
+      <div>
+        <div class="card-title">Enter Dam Parameters</div>
+        <div class="card-subtitle">All fields used for classification — enter best available values</div>
+      </div>
+    </div>
+
+    <div class="form-note">
+      <strong>Note:</strong> "Dam" throughout this tool means any artificial barrier and its appurtenant structures constructed across rivers or tributaries to impound or divert water — including barrages and weirs — as defined under Section 2(e) of DSA 2021. Height is measured from the lowest portion of the general foundation area to the top of dam.
+    </div>
+
+    <div class="input-grid">
+
+      <!-- Dam name -->
+      <div class="input-group full">
+        <label class="inp-label">Dam / Barrage Name <span style="font-weight:400;color:var(--ink-soft);font-size:0.7rem;">(optional — appears in result)</span></label>
+        <input class="inp" id="damName" type="text" placeholder="e.g. Ramnagar Barrage">
+      </div>
+
+      <!-- Height -->
+      <div class="input-group">
+        <label class="inp-label">Dam Height (metres) <span class="inp-ref">[Section 2(x)]</span></label>
+        <div class="inp-hint">From lowest foundation to top of dam</div>
+        <input class="inp" id="height" type="number" min="0" step="0.1" placeholder="e.g. 18.5" oninput="onInputChange()">
+      </div>
+
+      <!-- Crest length -->
+      <div class="input-group">
+        <label class="inp-label">Crest Length (metres) <span class="inp-ref">[Section 2(x)(ii)(A)]</span></label>
+        <div class="inp-hint">Total length of dam crest</div>
+        <input class="inp" id="crest" type="number" min="0" step="1" placeholder="e.g. 620" oninput="onInputChange()">
+      </div>
+
+      <!-- Reservoir capacity -->
+      <div class="input-group">
+        <label class="inp-label">Gross Storage Capacity (MCM) <span class="inp-ref">[Section 2(x)(ii)(B)]</span></label>
+        <div class="inp-hint">Million cubic metres — gross storage at FRL</div>
+        <input class="inp" id="storage" type="number" min="0" step="0.01" placeholder="e.g. 2.5" oninput="onInputChange()">
+      </div>
+
+      <!-- Max flood discharge -->
+      <div class="input-group">
+        <label class="inp-label">Max Flood Discharge (m³/s) <span class="inp-ref">[Section 2(x)(ii)(C)]</span></label>
+        <div class="inp-hint">Design flood discharge the dam handles</div>
+        <input class="inp" id="discharge" type="number" min="0" step="1" placeholder="e.g. 3500" oninput="onInputChange()">
+      </div>
+
+      <!-- Special conditions -->
+      <div class="input-group full">
+        <label class="inp-label">Special Conditions <span class="inp-ref">[Section 2(x)(ii)(D–E)]</span></label>
+        <div class="inp-hint">Check all that apply</div>
+        <div class="check-group">
+          <label class="check-opt" id="co-foundation">
+            <input type="checkbox" id="foundation" onchange="onInputChange()">
+            <span class="check-opt-label">Specially difficult foundation conditions<span class="radio-opt-sub">e.g. deep alluvium, karst, swelling soils, high uplift pressure</span></span>
+          </label>
+          <label class="check-opt" id="co-unusual">
+            <input type="checkbox" id="unusual" onchange="onInputChange()">
+            <span class="check-opt-label">Unusual design<span class="radio-opt-sub">e.g. non-standard dam type, innovative structural form, complex geometry</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Dam type -->
+      <div class="input-group">
+        <label class="inp-label">Dam / Structure Type</label>
+        <select class="inp" id="damType" onchange="onInputChange()">
+          <option value="">— Select —</option>
+          <option value="earth">Earth / Earthfill dam</option>
+          <option value="rockfill">Rockfill dam</option>
+          <option value="concrete-gravity">Concrete gravity dam</option>
+          <option value="concrete-arch">Concrete arch dam</option>
+          <option value="masonry">Masonry dam</option>
+          <option value="barrage">Barrage / Weir</option>
+          <option value="composite">Composite dam</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Downstream consequence -->
+      <div class="input-group">
+        <label class="inp-label">Downstream Consequence <span class="inp-ref">[Section 12 · Hazard]</span></label>
+        <div class="radio-group">
+          <label class="radio-opt" id="ro-high">
+            <input type="radio" name="hazard" value="high" onchange="onInputChange()">
+            <span class="radio-opt-label">High — probable loss of human life<span class="radio-opt-sub">Significant population in inundation zone</span></span>
+          </label>
+          <label class="radio-opt" id="ro-significant">
+            <input type="radio" name="hazard" value="significant" onchange="onInputChange()">
+            <span class="radio-opt-label">Significant — no probable loss of life<span class="radio-opt-sub">Economic/environmental damage likely</span></span>
+          </label>
+          <label class="radio-opt" id="ro-low">
+            <input type="radio" name="hazard" value="low" onchange="onInputChange()">
+            <span class="radio-opt-label">Low — minimal damage<span class="radio-opt-sub">Confined to dam owner's property</span></span>
+          </label>
+          <label class="radio-opt" id="ro-unknown">
+            <input type="radio" name="hazard" value="unknown" onchange="onInputChange()">
+            <span class="radio-opt-label">Not yet assessed<span class="radio-opt-sub">Hazard classification not done</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Himalayan -->
+      <div class="input-group full">
+        <label class="inp-label">Catchment Location</label>
+        <div class="radio-group" style="flex-direction:row;flex-wrap:wrap;">
+          <label class="radio-opt" id="ro-himalayan" style="flex:1;min-width:200px;">
+            <input type="radio" name="catchment" value="himalayan" onchange="onInputChange()">
+            <span class="radio-opt-label">Himalayan / glaciated catchment<span class="radio-opt-sub">GLOF consideration applies</span></span>
+          </label>
+          <label class="radio-opt" id="ro-peninsular" style="flex:1;min-width:200px;">
+            <input type="radio" name="catchment" value="peninsular" onchange="onInputChange()">
+            <span class="radio-opt-label">Peninsular / non-glaciated<span class="radio-opt-sub">Standard PMF methodology</span></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="btn-find" onclick="classify()">Find Dam Category →</button>
+    <button class="btn-reset" onclick="resetTool()">Reset</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result">
+
+    <div class="result-card" id="resultCard">
+      <div class="result-header">
+        <div class="result-icon" id="resultIcon"></div>
+        <div class="result-head-text">
+          <div class="result-verdict" id="resultVerdict"></div>
+          <div class="result-sub" id="resultSub"></div>
+        </div>
+      </div>
+      <div class="result-body" id="resultBody"></div>
+    </div>
+
+    <div class="ref-section">
+      <div class="ref-title">Classification Reference — DSA 2021 Section 2(x)</div>
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Threshold</th>
+            <th>Clause</th>
+            <th>Your Value</th>
+          </tr>
+        </thead>
+        <tbody id="refTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> This tool provides indicative classification based on the parameters entered. Final determination of specified dam status, hazard classification, and IDF standard must be made by a qualified dam safety engineer in consultation with the relevant State Dam Safety Organisation and NDSA. Parameters should be verified against original design records. — Er. Rakesh Gaurana, DamSafetyConsult.in
+    </div>
+  </div>
+
+</div>
+
+<script>
+function onInputChange(){
+  // Highlight selected radio/check visually
+  document.querySelectorAll('.radio-opt').forEach(el=>{
+    el.classList.toggle('selected', el.querySelector('input').checked);
+  });
+  document.querySelectorAll('.check-opt').forEach(el=>{
+    el.classList.toggle('selected', el.querySelector('input').checked);
+  });
+  // Mark filled inputs
+  document.querySelectorAll('.inp').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='SELECT'){
+      el.classList.toggle('filled', el.value!=='');
+    }
+  });
+}
+
+function getHazard(){
+  const r=document.querySelector('input[name="hazard"]:checked');
+  return r?r.value:'unknown';
+}
+function getCatchment(){
+  const r=document.querySelector('input[name="catchment"]:checked');
+  return r?r.value:'';
+}
+
+function classify(){
+  const name = document.getElementById('damName').value.trim() || 'Your Dam';
+  const h = parseFloat(document.getElementById('height').value)||0;
+  const crest = parseFloat(document.getElementById('crest').value)||0;
+  const storage = parseFloat(document.getElementById('storage').value)||0;
+  const discharge = parseFloat(document.getElementById('discharge').value)||0;
+  const foundation = document.getElementById('foundation').checked;
+  const unusual = document.getElementById('unusual').checked;
+  const hazard = getHazard();
+  const catchment = getCatchment();
+  const damType = document.getElementById('damType').value;
+
+  // Classification logic
+  let isSpecified = false;
+  let triggerReason = '';
+  let triggers = [];
+
+  // Primary: height >= 15m
+  if(h >= 15){
+    isSpecified = true;
+    triggerReason = 'Height ≥ 15 m';
+    triggers.push({met:true, primary:true, text:`Height ${h} m — exceeds 15 m threshold`, clause:'Section 2(x)(i)'});
+  } else {
+    triggers.push({met:false, primary:true, text:`Height ${h} m — below 15 m primary threshold`, clause:'Section 2(x)(i)'});
+  }
+
+  // Secondary: height 10-15m + qualifying conditions
+  const inSecondaryRange = h >= 10 && h < 15;
+  const secConds = [];
+
+  if(crest >= 500) secConds.push({text:`Crest length ${crest} m ≥ 500 m`, clause:'2(x)(ii)(A)'});
+  if(storage >= 1) secConds.push({text:`Gross storage ${storage} MCM ≥ 1 MCM`, clause:'2(x)(ii)(B)'});
+  if(discharge >= 2000) secConds.push({text:`Max flood discharge ${discharge} m³/s ≥ 2,000 m³/s`, clause:'2(x)(ii)(C)'});
+  if(foundation) secConds.push({text:'Specially difficult foundation conditions', clause:'2(x)(ii)(D)'});
+  if(unusual) secConds.push({text:'Unusual design', clause:'2(x)(ii)(E)'});
+
+  if(inSecondaryRange){
+    if(secConds.length > 0){
+      isSpecified = true;
+      triggerReason = `Height ${h} m (10–15 m range) + ${secConds.length} qualifying condition${secConds.length>1?'s':''}`;
+      secConds.forEach(c=>triggers.push({met:true, primary:false, text:c.text, clause:c.clause}));
+    } else {
+      triggers.push({met:false, primary:false, text:`Height ${h} m in 10–15 m range but no qualifying conditions met`, clause:'Section 2(x)(ii)'});
+    }
+  } else if(h < 10 && h > 0){
+    triggers.push({met:false, primary:false, text:`Height ${h} m — below 10 m minimum threshold`, clause:'Section 2(x)'});
+  } else if(h === 0){
+    // Only show if in secondary range context
+  }
+
+  // Also show secondary conditions even if already specified by height
+  if(h >= 15 && (crest||storage||discharge||foundation||unusual)){
+    secConds.forEach(c=>triggers.push({met:true, primary:false, text:c.text+' (additional qualifying condition)', clause:c.clause}));
+  }
+
+  // Hazard guidance
+  const hazardGuide = {
+    high:{cls:'high', label:'High Hazard Potential', text:`Probable loss of human life in event of dam failure. Highest level of regulatory scrutiny — mandatory O&M panel, annual inspections, CDSE every 5 years, EAP preparation mandatory, NDSA oversight for designated dams. IDF standard: PMF required.`},
+    significant:{cls:'significant', label:'Significant Hazard Potential', text:'No probable loss of human life but significant economic, property, or environmental damage. Full DSA 2021 compliance required — inspection, CDSE, EAP. IDF standard: SPF (Standard Project Flood) typically applicable per IS 11223, but PMF review required under DSA 2021.'},
+    low:{cls:'low', label:'Low Hazard Potential', text:'Minimal damage confined to dam owner\'s property. Full DSA 2021 compliance still required for specified dams — all obligations apply regardless of hazard class. IDF standard: 100-year return period flood per IS 11223, but verify against current NDSA guidance.'},
+    unknown:{cls:'unknown', label:'Hazard Classification Not Done', text:'Hazard Potential Classification is a mandatory obligation under Section 12 of DSA 2021. It must be carried out, approved by SDSO, and recorded on DHARMA portal. Classification determines inspection frequency, EAP requirements, and IDF standard.'}
+  };
+
+  // IDF guidance
+  const idfGuide = ()=>{
+    const himalayan = catchment==='himalayan';
+    if(hazard==='high'){
+      return `<strong>IDF Standard: PMF (Probable Maximum Flood)</strong> — mandatory for high-hazard specified dams under DSA 2021 and IS 11223:1985. ${himalayan?'<strong>GLOF consideration required</strong> — dam is in a Himalayan/glaciated catchment. Glacial Lake Outburst Flood scenarios must be evaluated as part of IDF review, as GLOF peaks can exceed standard PMF in some Himalayan catchments.':'Standard CWC hydrometeorological method applicable.'}`;
+    } else if(hazard==='significant'){
+      return `<strong>IDF Standard: SPF (Standard Project Flood)</strong> — typically applicable per IS 11223:1985 for significant-hazard dams. However, under DSA 2021, NDSA requires PMF review for all specified dams regardless of hazard class. ${himalayan?'<strong>GLOF consideration required</strong> — glaciated catchment. GLOF scenarios must be evaluated.':''}`;
+    } else if(hazard==='low'){
+      return `<strong>IDF Standard: 100-year return period flood</strong> — per IS 11223:1985 for low-hazard dams. Under DSA 2021, verify current NDSA guidance on IDF requirements — PMF review may be required regardless. ${himalayan?'<strong>GLOF consideration required</strong> — glaciated catchment.':''}`;
+    } else {
+      return `IDF standard depends on hazard classification — complete hazard assessment first. ${himalayan?'<strong>GLOF consideration will be required</strong> — dam is in a Himalayan/glaciated catchment.':''}`;
+    }
+  };
+
+  // Jurisdiction
+  const jurisGuide = ()=>{
+    if(!isSpecified) return '';
+    // NDSA designated: typically height > 30m or storage > 60 MCM or inter-state — simplified indicator
+    const likelyNDSA = h >= 30 || storage >= 60;
+    return `
+      <div class="juris-box">
+        <div class="juris-label">Indicative Regulatory Jurisdiction</div>
+        <div class="juris-row"><span class="juris-dot sdso"></span>All specified dams — <strong>SDSO jurisdiction</strong> for inspections, CDSE review, EAP approval, DHARMA compliance</div>
+        ${likelyNDSA?`<div class="juris-row"><span class="juris-dot ndsa"></span>This dam may qualify for <strong>NDSA designation</strong> (height ≥ 30 m or storage ≥ 60 MCM or inter-state) — direct NDSA oversight may apply. Verify with NDSA.</div>`:''}
+        <div class="juris-row" style="font-size:0.72rem;color:var(--ink-soft);margin-top:0.4rem;">Note: NDSA designation criteria are determined by NDSA — verify for your specific dam.</div>
+      </div>`;
+  };
+
+  // Obligations list
+  const oblItems = [
+    'Constitute Dam Safety Unit (DSU)',
+    'Appoint qualified Dam Safety Officer',
+    'Constitute O&M Panel of experts',
+    'Hazard Potential Classification (Section 12)',
+    'IDF Review — PMF/SPF as applicable (Section 13)',
+    'Seismic Hazard Assessment (Section 14)',
+    'Instrumentation & monitoring (Section 15)',
+    'Pre & post-monsoon inspections',
+    'CDSE every 5 years',
+    'Emergency Action Plan (EAP)',
+    'O&M Manual — current & approved',
+    'Log Book maintenance',
+    'DHARMA portal compliance',
+    'Risk Assessment — RRSSD/SQRA/QRA',
+  ];
+
+  // Reference table
+  const refRows = [
+    {crit:'Height (primary)', thresh:'≥ 15 m', clause:'2(x)(i)', val: h>0?`${h} m`:'Not entered'},
+    {crit:'Height (secondary range)', thresh:'10 – 15 m', clause:'2(x)(ii)', val: h>0?`${h} m`:'Not entered'},
+    {crit:'Crest length', thresh:'≥ 500 m', clause:'2(x)(ii)(A)', val: crest>0?`${crest} m`:'Not entered'},
+    {crit:'Gross storage', thresh:'≥ 1 MCM', clause:'2(x)(ii)(B)', val: storage>0?`${storage} MCM`:'Not entered'},
+    {crit:'Max flood discharge', thresh:'≥ 2,000 m³/s', clause:'2(x)(ii)(C)', val: discharge>0?`${discharge} m³/s`:'Not entered'},
+    {crit:'Difficult foundation', thresh:'Yes / No', clause:'2(x)(ii)(D)', val: foundation?'Yes':'No'},
+    {crit:'Unusual design', thresh:'Yes / No', clause:'2(x)(ii)(E)', val: unusual?'Yes':'No'},
+  ];
+
+  // Render
+  const card = document.getElementById('resultCard');
+  card.className = 'result-card ' + (isSpecified?'specified':'not-specified');
+  document.getElementById('resultIcon').textContent = isSpecified ? '⬛' : '○';
+  document.getElementById('resultVerdict').textContent = isSpecified
+    ? `${name} — Specified Dam`
+    : `${name} — Not a Specified Dam`;
+  document.getElementById('resultSub').textContent = isSpecified
+    ? `Qualifies under DSA 2021 Section 2(x) · ${triggerReason} · All obligations of the Act apply`
+    : `Does not meet the criteria of Section 2(x) · DSA 2021 obligations do not apply · State regulations may still apply`;
+
+  const hg = hazardGuide[hazard] || hazardGuide.unknown;
+
+  document.getElementById('resultBody').innerHTML = `
+    <div class="trigger-box">
+      <div class="trigger-label">Classification Criteria — How Your Dam Qualifies</div>
+      ${triggers.map(t=>`
+        <div class="trigger-item ${t.met?(t.primary?'primary-met':'met'):'not-met'}">
+          <span class="trigger-icon">${t.met?'✓':'–'}</span>
+          <span>${t.text} <span style="font-size:0.7rem;opacity:0.6;">[${t.clause}]</span></span>
+        </div>`).join('')}
+    </div>
+
+    ${isSpecified?`
+    <div class="hazard-box ${hg.cls}">
+      <div class="hz-label">Hazard Potential Classification · Section 12</div>
+      <div class="hz-text">${hg.text}</div>
+    </div>
+
+    <div class="idf-box">
+      <div class="idf-label">Indicative IDF Standard · Section 13 · IS 11223:1985</div>
+      <div class="idf-text">${idfGuide()}</div>
+    </div>
+
+    ${jurisGuide()}
+
+    <div class="obligations">
+      <div class="obl-title">Statutory Obligations under DSA 2021 — All Apply to This Dam</div>
+      <div class="obl-grid">
+        ${oblItems.map(o=>`<div class="obl-item">${o}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="result-cta">
+      <div class="rcta-text">Need help with compliance — CDSE preparation, IDF review, EAP, or risk assessment? Use the DSA 2021 Compliance Navigator or get in touch directly.</div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <a href="dsa-compliance-navigator.html" class="btn-cta">Compliance Navigator →</a>
+        <a href="contact.html" class="btn-cta" style="background:var(--ink-mid);">Get in Touch</a>
+      </div>
+    </div>`
+    :
+    `<div class="not-spec-box">
+      <strong>DSA 2021 does not apply to this dam.</strong>
+      Your dam does not meet the height threshold (≥ 15 m) or the secondary qualifying conditions (height 10–15 m with at least one of the five criteria). The Dam Safety Act 2021 and its obligations — Dam Safety Unit, inspections, CDSE, EAP — do not apply as a statutory matter.<br><br>
+      However: (1) State-level dam safety regulations may still apply — check with your State Dam Safety Organisation. (2) Good dam safety practice recommends periodic safety reviews regardless of statutory applicability.
+    </div>
+    <div class="result-cta">
+      <div class="rcta-text">If you believe your dam may have been miscategorised, or if parameters are uncertain, consult a qualified dam safety engineer for formal determination.</div>
+      <a href="contact.html" class="btn-cta">Get Expert Advice</a>
+    </div>`}
+  `;
+
+  // Reference table
+  document.getElementById('refTableBody').innerHTML = refRows.map(r=>`
+    <tr>
+      <td>${r.crit}</td>
+      <td>${r.thresh}</td>
+      <td style="font-size:0.72rem;color:var(--ink-soft);">${r.clause}</td>
+      <td>${r.val}</td>
+    </tr>`).join('');
+
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetTool(){
+  document.querySelectorAll('.inp').forEach(el=>{if(el.tagName==='INPUT')el.value='';else if(el.tagName==='SELECT')el.value='';});
+  document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(el=>el.checked=false);
+  document.querySelectorAll('.radio-opt,.check-opt').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('result').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
