@@ -110,6 +110,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   .form-row{grid-template-columns:1fr;}
   footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
 }
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:rgba(255,255,255,0.8);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(12,22,38,0.98);z-index:199;padding:1.5rem 2rem;flex-direction:column;gap:0;border-bottom:1px solid rgba(232,160,32,0.12);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--amber-bright);}
+@media(max-width:900px){.hamburger{display:flex;}.nav-cta{display:none;}}
 </style>
 </head>
 <body>
@@ -120,14 +132,14 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
     <div class="nav-tagline">Dam Safety Engineering · India</div>
   </div>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="tools.html">Tools</a></li>
-    <li><a href="training.html">Training</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/">Home</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html">About</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/training.html">Training</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta active" style="background:var(--amber-bright);">Engage Us</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html" class="nav-cta active" style="background:var(--amber-bright);">Engage Us</a>
 </nav>
 
 <section class="page-hero">
@@ -194,33 +206,33 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
     <div class="form-title">Send an Enquiry</div>
     <p class="form-sub">Fill in as much detail as you can — the more context you provide, the more specific and useful the response will be.</p>
 
-    <form id="contactForm" onsubmit="submitForm(event)">
+    <form id="contactForm" action="https://formspree.io/f/YOURFORMID" method="POST" onsubmit="submitForm(event)">
 
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Your Name *</label>
-          <input class="form-input" type="text" id="fname" placeholder="Full name" required>
+          <input class="form-input" type="text" id="fname" name="name" placeholder="Full name" required>
         </div>
         <div class="form-group">
           <label class="form-label">Organisation</label>
-          <input class="form-input" type="text" id="forg" placeholder="Department / Company">
+          <input class="form-input" type="text" id="forg" name="organisation" placeholder="Department / Company">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Email *</label>
-          <input class="form-input" type="email" id="femail" placeholder="your@email.com" required>
+          <input class="form-input" type="email" id="femail" name="email" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
           <label class="form-label">Phone / WhatsApp</label>
-          <input class="form-input" type="tel" id="fphone" placeholder="+91-XXXXXXXXXX">
+          <input class="form-input" type="tel" id="fphone" name="phone" placeholder="+91-XXXXXXXXXX">
         </div>
       </div>
 
       <div class="form-group">
         <label class="form-label">Nature of Enquiry *</label>
-        <select class="form-input" id="ftype" required>
+        <select class="form-input" id="ftype" name="enquiry_type" required>
           <option value="">— Select —</option>
           <option>DSA 2021 Compliance / CDSE Report</option>
           <option>Dam Break Analysis / EAP Preparation</option>
@@ -235,17 +247,17 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 
       <div class="form-group">
         <label class="form-label">Dam / Project Name</label>
-        <input class="form-input" type="text" id="fdam" placeholder="Name of dam or project (if applicable)">
+        <input class="form-input" type="text" id="fdam" name="dam_project" placeholder="Name of dam or project (if applicable)">
       </div>
 
       <div class="form-group">
         <label class="form-label">State / Location</label>
-        <input class="form-input" type="text" id="fstate" placeholder="State and district">
+        <input class="form-input" type="text" id="fstate" name="state_location" placeholder="State and district">
       </div>
 
       <div class="form-group">
         <label class="form-label">Requirement &amp; Timeline *</label>
-        <textarea class="form-input" id="fmsg" placeholder="Describe your requirement in as much detail as possible — what work is needed, the dam type and size if known, any deadlines or regulatory obligations driving the timeline..." required></textarea>
+        <textarea class="form-input" id="fmsg" name="message" placeholder="Describe your requirement in as much detail as possible — what work is needed, the dam type and size if known, any deadlines or regulatory obligations driving the timeline..." required></textarea>
         <div class="form-note">The more detail you provide, the more specific and useful the response will be.</div>
       </div>
 
@@ -302,22 +314,49 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
   <div class="footer-note">Er. Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
   <div class="footer-links">
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="tools.html">Tools</a>
-    <a href="training.html">Training</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html">About</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/training.html">Training</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/resources.html">Resources</a>
   </div>
 </footer>
 
 <script>
-function submitForm(e){
+async function submitForm(e){
   e.preventDefault();
-  // In production this would POST to a form handler
-  // For now show success message
-  document.getElementById('contactForm').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+  const form = document.getElementById('contactForm');
+  const data = new FormData(form);
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: {'Accept': 'application/json'}
+    });
+    if(response.ok){
+      form.style.display='none';
+      document.getElementById('formSuccess').style.display='block';
+    } else {
+      alert('There was a problem sending your message. Please email rgaurana@gmail.com directly.');
+    }
+  } catch(error) {
+    alert('There was a problem sending your message. Please email rgaurana@gmail.com directly.');
+  }
 }
 </script>
 
+<script>
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+// Close menu when a link is clicked
+document.querySelectorAll('.mobile-menu a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>

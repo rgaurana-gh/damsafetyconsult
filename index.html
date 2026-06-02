@@ -251,6 +251,18 @@ footer{
   .ribbon{padding:0.85rem 1.5rem;}
   footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
 }
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:rgba(255,255,255,0.8);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(12,22,38,0.98);z-index:199;padding:1.5rem 2rem;flex-direction:column;gap:0;border-bottom:1px solid rgba(232,160,32,0.12);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--amber-bright);}
+@media(max-width:900px){.hamburger{display:flex;}.nav-cta{display:none;}}
 </style>
 </head>
 <body>
@@ -262,14 +274,27 @@ footer{
     <div class="nav-tagline">Dam Safety Engineering · India</div>
   </div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#tools">Tools</a></li>
-    <li><a href="#training">Training</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html">About</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/training.html">Training</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Engage Us</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html" class="nav-cta">Engage Us</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/">Home</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html">About</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/training.html">Training</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/resources.html">Resources</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -283,8 +308,8 @@ footer{
       <strong>35+ years</strong> with the Central Water Commission and National Dam Safety Authority, retiring as Deputy Director. MTech from IIT Delhi. NDSA Technical Consultant (2023–2026). Specialist in DSA 2021 compliance, dam break analysis, barrage design, and EAP preparation across India's most demanding river systems.
     </p>
     <div class="hero-actions">
-      <a href="#services" class="btn-amber">Explore Services</a>
-      <a href="#about" class="btn-outline">View Profile</a>
+      <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html" class="btn-amber">Explore Services</a>
+      <a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html" class="btn-outline">View Profile</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="stat-n">35+</div><div class="stat-l">Years of Experience</div></div>
@@ -351,7 +376,7 @@ footer{
     <p class="s-intro">
       Over 35 years with the Central Water Commission and National Dam Safety Authority — from hands-on barrage design in the 1980s to shaping national dam safety policy under DSA 2021. Authored NDSA Annual Reports, led nationwide risk assessment training under the World Bank, and conducted forensic investigation of dam failures. Now available for independent consulting.
     </p>
-    <a href="#contact" class="btn-amber" style="align-self:flex-start;margin-top:0.5rem;">Get in Touch</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html" class="btn-amber" style="align-self:flex-start;margin-top:0.5rem;">Get in Touch</a>
   </div>
   <div class="about-right">
     <div class="cred-row">
@@ -489,7 +514,7 @@ footer{
     <p class="s-intro">
       Delivered training to dam safety officials across multiple states and nationwide for NDSA and the World Bank. Programmes cover DSA 2021 implementation, rapid risk assessment, DHARMA portal operations, EAP preparation, and dam inspection methodology.
     </p>
-    <a href="#contact" class="btn-amber" style="margin-top:0.5rem;display:inline-block;">Enquire About Training</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html" class="btn-amber" style="margin-top:0.5rem;display:inline-block;">Enquire About Training</a>
   </div>
   <div class="training-cards">
     <div class="tc">
@@ -577,12 +602,26 @@ footer{
   <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
   <div class="footer-note">Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
   <div class="footer-links">
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#tools">Tools</a>
-    <a href="#contact">Contact</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html">Contact</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/resources.html">Resources</a>
   </div>
 </footer>
 
+<script>
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+// Close menu when a link is clicked
+document.querySelectorAll('.mobile-menu a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>

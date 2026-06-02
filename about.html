@@ -218,6 +218,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   .tl-dot{left:94px;}
   footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
 }
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:rgba(255,255,255,0.8);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(12,22,38,0.98);z-index:199;padding:1.5rem 2rem;flex-direction:column;gap:0;border-bottom:1px solid rgba(232,160,32,0.12);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--amber-bright);}
+@media(max-width:900px){.hamburger{display:flex;}.nav-cta{display:none;}}
 </style>
 </head>
 <body>
@@ -229,15 +241,28 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
     <div class="nav-tagline">Dam Safety Engineering · India</div>
   </div>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html" class="active">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="tools.html">Tools</a></li>
-    <li><a href="training.html">Training</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/">Home</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html" class="active">About</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a></li>
+    <li><a href="https://rgaurana-gh.github.io/damsafetyconsult/training.html">Training</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Engage Us</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html" class="nav-cta">Engage Us</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/">Home</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/about.html">About</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/training.html">Training</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/resources.html">Resources</a>
+  <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html">Contact</a>
+</div>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -561,8 +586,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
     <p>Dam safety is not an abstract regulatory exercise. India has over 6,000 large dams, many built decades ago, now facing increased hydrological loads, ageing infrastructure, and growing downstream populations. The Dam Safety Act 2021 has created the regulatory architecture — but implementation requires practitioners who understand both the law and the engineering.</p>
     <p>After 35 years designing these structures and then helping regulate them, I bring both sides of that equation. The goal is not compliance paperwork — it is dams that do not fail.</p>
     <div class="personal-cta">
-      <a href="services.html" class="btn-amber">View Services</a>
-      <a href="contact.html" class="btn-outline-dark">Get in Touch</a>
+      <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html" class="btn-amber">View Services</a>
+      <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html" class="btn-outline-dark">Get in Touch</a>
     </div>
   </div>
   <div class="personal-stats">
@@ -590,12 +615,26 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   <div class="footer-brand">DamSafetyConsult<span>.in</span></div>
   <div class="footer-note">Er. Rakesh Gaurana · Dam Safety &amp; Hydraulic Structures Consultant · India</div>
   <div class="footer-links">
-    <a href="services.html">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="tools.html">Tools</a>
-    <a href="contact.html">Contact</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/services.html">Services</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/projects.html">Projects</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/tools.html">Tools</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/contact.html">Contact</a>
+    <a href="https://rgaurana-gh.github.io/damsafetyconsult/resources.html">Resources</a>
   </div>
 </footer>
 
+<script>
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+// Close menu when a link is clicked
+document.querySelectorAll('.mobile-menu a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>
